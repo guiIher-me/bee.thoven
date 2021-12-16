@@ -1,8 +1,13 @@
 const dotenv = require('dotenv');
-const got = require('got');
-const FormData = require('form-data');
+const recognizeMusic = require ('../controller/recognizeMusic')
 
-const { Client, FileContent, TextContent, WebhookController } = require('@zenvia/sdk');
+const {
+  Client,
+  FileContent,
+  TextContent,
+  WebhookController
+} = require('@zenvia/sdk');
+
 
 dotenv.config();
 
@@ -17,7 +22,8 @@ const webhook = new WebhookController({
 
     if (messageEvent.message.contents[0].type === 'file' && messageEvent.message.contents[0].fileMimeType.includes('audio')) {
       const music = await recognizeMusic(messageEvent.message.contents[0].fileUrl);
-
+      // console.log(messageEvent.message.contents[0].fileUrl) imprime isso: https://chat.zenvia.com/storage/files/07b22012f620450052d822330bfe1f2af1e238d610ec9a9668f4aa24f3022c5b.bin 
+      //console.log("musica:", music)
       if (music) {
         let text = '';
         if (music.artist) {
@@ -30,21 +36,24 @@ const webhook = new WebhookController({
           text = `${text}Álbum: *${music.album}*\n`;
         }
         content = [new TextContent(text)];
-        if (music.deezer && music.deezer.picture) {
-          content.push(new FileContent(music.deezer.picture, 'image/jpeg'));
+        if (music.spotify && music.spotify.picture) {
+          content.push(new FileContent(music.spotify.picture, 'image/jpeg'));
         }
-        if (music.deezer && music.deezer.preview) {
-          content.push(new FileContent(music.deezer.preview, 'audio/mpeg'));
+        if (music.spotify && music.spotify.preview) {
+          content.push(new FileContent(music.spotify.preview, 'audio/mpeg'));
         }
+        // if (music.spotify && music.spotify.link) {
+        //   content.push(new FileContent(music.spotify.link, ''));
+        // }
       } else {
-        content = [new TextContent('Não foi possível identificar a música do áudio.')];
+        content = [new TextContent('Não foi possível localizar.')];
       }
     }
 
     whatsapp.sendMessage(messageEvent.message.to, messageEvent.message.from, ...content)
-    .then((response) => {
-      console.debug('Response:', response);
-    });
+      .then((response) => {
+        console.debug('Response:', response);
+      });
   },
 });
 
@@ -53,28 +62,3 @@ webhook.on('listening', () => {
 });
 
 webhook.init();
-
-const recognizeMusic = async (url) => {
-  const form = new FormData();
-  form.append('api_token', process.env.AUDD_TOKEN);
-  form.append('url', url);
-  form.append('return', 'deezer');
-
-  const response = await got.post('https://api.audd.io/', {
-    body: form,
-    responseType: 'json',
-    resolveBodyOnly: true,
-  });
-
-  if (response && response.result) {
-    return {
-      artist: response.result.artist,
-      title: response.result.title,
-      album: response.result.album,
-      deezer: {
-        picture: response.result.deezer && response.result.deezer.artist ? response.result.deezer.artist.picture_medium : undefined,
-        preview: response.result.deezer ? response.result.deezer.preview : undefined,
-      },
-    };
-  }
-};
