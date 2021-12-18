@@ -3,12 +3,13 @@ const dotenv = require('dotenv');
 
 module.exports = async (url) => {
 
+  try {
   dotenv.config();
 
   const form = {
     'api_token': process.env.AUDD_TOKEN,
     'url': url,
-    'return': 'apple_music,spotify'
+    'return': 'deezer'
   }
 
   const chamada = async (form) => {
@@ -18,19 +19,15 @@ module.exports = async (url) => {
       data: form,
       headers: {
         'Content-Type': 'multipart/form-data'
-      },
-    }).then((response) => {
-      console.log("aqui:", response.data)
-      return response.data
-    }).catch((error) => {
-      console.log(error)
-      return error
-    });
-    return result
+      }
+    })
+   
+   console.log(result.data)
+    
+    return result.data
   }
 
   let resposta = await chamada(form)
-  console.log("resposta:   ", resposta.result.spotify.artists)
   
 
   if (resposta && resposta.result) {
@@ -39,12 +36,16 @@ module.exports = async (url) => {
       title: resposta.result.title,
       album: resposta.result.album,
       spotify: {
-        picture: resposta.result.spotify && resposta.result.spotify.images ? resposta.result.spotify.images[0] : undefined,
-        preview: resposta.result.spotify ? resposta.result.spotify.preview_url : undefined,
-        link: resposta.result.spotify ? resposta.result.song_link : undefined,
+        picture: resposta.result.deezer && resposta.result.deezer.artist ? resposta.result.deezer.artist.picture : undefined,
+        preview: resposta.result.deezer.preview ? resposta.result.deezer.preview : undefined,
+        link: resposta.result.deezer ? resposta.result.deezer.link : undefined,
       },
 
     }
   }
+
+} catch (err) {
+  return err
+}
 
 }
