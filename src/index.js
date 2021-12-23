@@ -1,6 +1,8 @@
 const dotenv = require('dotenv');
-const recognizeMusic = require ('../controller/recognizeMusic')
-
+const recognizeMusic = require('../controller/recognizeMusic')
+const musicList = require('../controller/musicList')
+let arrayLinks = require('../controller/functionArrayLinks')
+let response = []
 const {
   Client,
   FileContent,
@@ -21,9 +23,18 @@ const webhook = new WebhookController({
     let content = [new TextContent('Testado')];
 
     if (messageEvent.message.contents[0].type === 'file' && messageEvent.message.contents[0].fileMimeType.includes('audio')) {
+
       const music = await recognizeMusic(messageEvent.message.contents[0].fileUrl);
+
+     
+        const linksMusic = await musicList(music.spotify.link)
+        const response = arrayLinks(linksMusic.linksByPlatform)
+        console.log("array de links:", response)
+    
+
       // console.log(messageEvent.message.contents[0].fileUrl) imprime isso: https://chat.zenvia.com/storage/files/07b22012f620450052d822330bfe1f2af1e238d610ec9a9668f4aa24f3022c5b.bin 
       //console.log("musica:", music)
+
       if (music) {
         let text = '';
         if (music.artist) {
@@ -42,8 +53,15 @@ const webhook = new WebhookController({
         if (music.spotify && music.spotify.preview) {
           content.push(new FileContent(music.spotify.preview, 'audio/mpeg'));
         }
+        if (response) {
+          //response.forEach(element => {
+            content.push(new TextContent(response[0].name))
+            content.push(new TextContent(response[0].url))
+        //  });
+
+        }
         // if (music.spotify && music.spotify.link) {
-        //   content.push(new FileContent(music.spotify.link, ''));
+        //   content.push(new TextContent(music.spotify.link, 'url'));
         // }
       } else {
         content = [new TextContent('Não foi possível localizar.')];
@@ -52,7 +70,7 @@ const webhook = new WebhookController({
 
     whatsapp.sendMessage(messageEvent.message.to, messageEvent.message.from, ...content)
       .then((response) => {
-        console.debug('Response:', response);
+        //console.debug('Response:', response);
       });
   },
 });
