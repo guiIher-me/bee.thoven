@@ -8,7 +8,6 @@ module.exports = async (url) => {
             url: `https://api.song.link/v1-alpha.1/links?url=${url}`,
 
         })
-        console.log("resultadooooo",result.data)
         return (result.data)
     } catch (err) {
         return err

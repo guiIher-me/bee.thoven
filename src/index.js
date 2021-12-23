@@ -1,11 +1,10 @@
 const dotenv = require('dotenv');
 const recognizeMusic = require('../controller/recognizeMusic')
-const musicList = require('../controller/musicList')
-let arrayLinks = require('../controller/functionArrayLinks')
+const Music = require('../controller/music')
+
 let response = []
 const {
   Client,
-  FileContent,
   TextContent,
   WebhookController
 } = require('@zenvia/sdk');
@@ -20,51 +19,24 @@ const whatsapp = client.getChannel('whatsapp');
 const webhook = new WebhookController({
   channel: 'whatsapp',
   messageEventHandler: async (messageEvent) => {
-    let content = [new TextContent('Testado')];
+    let content = [];
 
     if (messageEvent.message.contents[0].type === 'file' && messageEvent.message.contents[0].fileMimeType.includes('audio')) {
 
-      const music = await recognizeMusic(messageEvent.message.contents[0].fileUrl);
+      const rec_music = await recognizeMusic(messageEvent.message.contents[0].fileUrl);
+      
+      try {
+        
+        if (!rec_music) throw new Error('Música não encontrada!');
 
-     
-        const linksMusic = await musicList(music.spotify.link)
-        const response = arrayLinks(linksMusic.linksByPlatform)
-        console.log("array de links:", response)
-    
+        const music = new Music(rec_music);
+        content = await music.getMessages()
+        console.log("Música encontrada!")
 
-      // console.log(messageEvent.message.contents[0].fileUrl) imprime isso: https://chat.zenvia.com/storage/files/07b22012f620450052d822330bfe1f2af1e238d610ec9a9668f4aa24f3022c5b.bin 
-      //console.log("musica:", music)
+      } catch(e) {
 
-      if (music) {
-        let text = '';
-        if (music.artist) {
-          text = `${text}Artista: *${music.artist}*\n`;
-        }
-        if (music.title) {
-          text = `${text}Título: *${music.title}*\n`;
-        }
-        if (music.album) {
-          text = `${text}Álbum: *${music.album}*\n`;
-        }
-        content = [new TextContent(text)];
-        if (music.spotify && music.spotify.picture) {
-          content.push(new FileContent(music.spotify.picture, 'image/jpeg'));
-        }
-        if (music.spotify && music.spotify.preview) {
-          content.push(new FileContent(music.spotify.preview, 'audio/mpeg'));
-        }
-        if (response) {
-          //response.forEach(element => {
-            content.push(new TextContent(response[0].name))
-            content.push(new TextContent(response[0].url))
-        //  });
-
-        }
-        // if (music.spotify && music.spotify.link) {
-        //   content.push(new TextContent(music.spotify.link, 'url'));
-        // }
-      } else {
-        content = [new TextContent('Não foi possível localizar.')];
+        console.log(e)
+        content.push(new TextContent('Não foi possível localizar.'))
       }
     }
 
