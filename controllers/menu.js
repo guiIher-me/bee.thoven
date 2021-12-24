@@ -6,10 +6,10 @@ module.exports = class Menu {
     constructor(title, options) {
         this.title = title
         this.options = options
-        this.formatedOptions = this.getArrayFormatedOptions()
+        this.formatedOptions = this.getFormatedOptionsArray()
     }
 
-    getArrayFormatedOptions() {
+    getFormatedOptionsArray() {
         return this.options.map((option, index) => {
             return `${index+1}. ${option}`
         })
@@ -27,6 +27,8 @@ module.exports = class Menu {
     }
 
     async executeOptionByText(text, music) {
+        if(!music) return [Message.toText('Olá! Envie-nos um áudio de 5s com a música que deseja descobrir!')]
+
         const rec_option = RecognizeOption.recognize(text, this.formatedOptions)
         if(!rec_option.length) return [Message.toText("Opção inválida, tente escolher novamente")]
 

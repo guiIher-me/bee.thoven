@@ -44,9 +44,7 @@ const webhook = new WebhookController({
         content.push(...messages)
 
       } catch(e) {
-
-        content.push(new TextContent('Desculpe! não conseguimos reconhecer a música'))
-
+        content.push(Message.toText('Desculpe, não conseguimos reconhecer a música'))
       }
     }
 
@@ -54,16 +52,13 @@ const webhook = new WebhookController({
     if(Message.isText(messageEvent)) {
 
       try {
-        if(!music) throw new Error('object music is undefined!')
 
-        let text = Message.getText(messageEvent)
+        let text = Message.getTextFromUser(messageEvent)
         let messages = await menu.executeOptionByText(text, music)
         content.push(...messages)
 
       } catch(e) {
-
-        content.push(new TextContent('Olá! Envie-nos um áudio de 5s com a música que deseja descobrir!'))
-
+        content.push(Message.toText('Desculpe, um erro inesperado ocorreu!\nTente novamente mais tarde...'))
       }
       
     }

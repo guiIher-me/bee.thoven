@@ -15,7 +15,7 @@ module.exports = class Message {
         return messageEvent.message.contents[0].type === 'text'
     }
 
-    static getText(messageEvent) {
+    static getTextFromUser(messageEvent) {
         return messageEvent.message.contents[0].text
     }
 
