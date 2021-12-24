@@ -56,11 +56,11 @@ module.exports = class Music {
         if(MusicInfoMessage)
           content.push(Message.toText(MusicInfoMessage))
         
-        if (this.hasImage())
-          content.push(Message.toFile(this.music.spotify.picture, 'image/jpeg'))
+        // if (this.hasImage())
+        //   content.push(Message.toFile(this.music.spotify.picture, 'image/jpeg'))
         
-        if (this.hasAudioPreview())
-          content.push(Message.toFile(this.music.spotify.preview, 'audio/mpeg'))
+        // if (this.hasAudioPreview())
+        //   content.push(Message.toFile(this.music.spotify.preview, 'audio/mpeg'))
 
         return content
     }

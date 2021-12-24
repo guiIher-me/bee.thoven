@@ -1,5 +1,4 @@
 const Message = require('./message')
-const Button = require('./button')
 const RecognizeOption = require('./recognize/recognizeOption')
 
 module.exports = class Menu {
@@ -7,28 +6,40 @@ module.exports = class Menu {
     constructor(title, options) {
         this.title = title
         this.options = options
+        this.formatedOptions = this.getArrayFormatedOptions()
+    }
+
+    getArrayFormatedOptions() {
+        return this.options.map((option, index) => {
+            return `${index+1}. ${option}`
+        })
+    }
+
+    toString() {
+        let menu = `*${this.title}*\n\n`
+        this.formatedOptions.forEach(element => menu += `${element}\n`);
+        return menu
     }
 
     getMessages() {
-        const messageMenu = Button.getMenu(this.title, this.options)
-        content.push(Message.toText(messageMenu))
-        return content
+        let messages = this.toString()
+        return [Message.toText(messages)]
     }
 
-    async executeOption(text, music) {
-        const rec_option = RecognizeOption.recognize(text, this.options)
-        const option = rec_option.item //pode melhorar se pegar o refIndex (retorna o index encontrado)
+    async executeOptionByText(text, music) {
+        const rec_option = RecognizeOption.recognize(text, this.formatedOptions)
+        if(!rec_option.length) return [Message.toText("Opção inválida, tente escolher novamente")]
 
-        if(option == this.options[0])
+        const option = rec_option[0].refIndex
+
+        if(option == 0)
             return await music.getLinksPlayerMusicMessages()
 
-        if(option == this.options[1])
-            return false
+        if(option == 1)
+            return []
 
-        if(option == this.options[2])
-            return false
-
-        return false
+        if(option == 2)
+            return []
     }
 
 }

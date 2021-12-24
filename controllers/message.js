@@ -2,7 +2,6 @@ const {
     FileContent,
     TextContent,
 } = require('@zenvia/sdk');
-const Button = require('./button');
 
 module.exports = class Message {
 

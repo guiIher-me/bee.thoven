@@ -1,8 +1,8 @@
-const dotenv = require('dotenv');
-const recognizeMusic = require('../controllers/recognize/recognizeMusic')
+const dotenv = require('dotenv')
 const Music = require('../controllers/music')
 const Message = require('../controllers/message')
 const Menu = require('../controllers/menu')
+const recognizeMusic = require('../controllers/recognize/recognizeMusic')
 
 const {
   Client,
@@ -30,7 +30,7 @@ const webhook = new WebhookController({
 
       try {
         
-        if (!rec_music) throw new Error('Música não encontrada!')
+        if(!rec_music) throw new Error('Music not found!')
 
         music = new Music(rec_music)
 
@@ -57,7 +57,7 @@ const webhook = new WebhookController({
         if(!music) throw new Error('object music is undefined!')
 
         let text = Message.getText(messageEvent)
-        let messages = await menu.executeOption(text, music)
+        let messages = await menu.executeOptionByText(text, music)
         content.push(...messages)
 
       } catch(e) {
