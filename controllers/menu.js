@@ -1,16 +1,11 @@
-const { contentType } = require('express/lib/response')
 const Message = require('./message')
 
 module.exports = class Menu {
 
     static getMessages() {
         let content = []
-        const messageMenu = "*O que você deseja obter?*\n" +
-                            "1. Players de música\n" +
-                            "2. Letra\n" +
-                            "3. Tradução\n" +
-                            "4. cifra"
-        
+        const messageMenu = Message.toButtonsMenu('O que você deseja obter?', 
+                                                  ['Players de música', 'Letra', 'Tradução'])
         content.push(Message.toText(messageMenu))
         return content
     }
@@ -21,28 +16,16 @@ module.exports = class Menu {
     }
 
     static async executeOption(text, music) {
-        
-        let content = []
-
         switch(Menu.recognizeOption(text)) {
             case '1':
-                let messages = await music.getLinksPlayerMusicMessages()
-                content.push(...messages)
-                break
+                return await music.getLinksPlayerMusicMessages()
             case '2':
-    
-                break
+                return false
             case '3':
-    
-                break
-            case '4':
-    
-                break
-            default:
+                return false
         }
 
-        return content
+        return false
     }
-
 
 }

@@ -4,7 +4,7 @@ const Message = require('./message')
 
 module.exports = class Music {
     constructor(music) {
-        this.music = music;
+        this.music = music
     }
 
     getInfo() {
@@ -19,7 +19,7 @@ module.exports = class Music {
         if (this.music.album)
             text = `${text}Álbum: *${this.music.album}*\n`
 
-        return text != '' ? text : false;
+        return text != '' ? text : false
     }
 
     hasImage() {

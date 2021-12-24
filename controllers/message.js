@@ -2,6 +2,7 @@ const {
     FileContent,
     TextContent,
 } = require('@zenvia/sdk');
+const Button = require('./button');
 
 module.exports = class Message {
 
@@ -25,6 +26,10 @@ module.exports = class Message {
 
     static toText(message) {
         return new TextContent(message)
+    }
+
+    static toButtonsMenu(body, options) {
+        return Button.getMenu(body, options)        
     }
 
 }

@@ -22,7 +22,7 @@ const webhook = new WebhookController({
   channel: 'whatsapp',
   messageEventHandler: async (messageEvent) => {
 
-    let content = [];
+    let content = []
 
     if(Message.isAudio(messageEvent)) {
       const rec_music = await recognizeMusic(messageEvent.message.contents[0].fileUrl)
@@ -44,13 +44,14 @@ const webhook = new WebhookController({
 
       } catch(e) {
 
-        content.push(new TextContent('Não foi possível localizar uma música para este áudio'))
+        content.push(new TextContent('Desculpe! não conseguimos reconhecer a música'))
 
       }
     }
 
 
     if(Message.isText(messageEvent)) {
+
       try {
         if(!music) throw new Error('object music is undefined!')
 
@@ -69,7 +70,10 @@ const webhook = new WebhookController({
     whatsapp.sendMessage(messageEvent.message.to, messageEvent.message.from, ...content)
       .then((response) => {
         //console.debug('Response:', response);
-      });
+      })
+      .catch((e) => {
+        console.log(e);
+      })
   },
 });
 
