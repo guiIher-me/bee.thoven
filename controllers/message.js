@@ -28,8 +28,4 @@ module.exports = class Message {
         return new TextContent(message)
     }
 
-    static toButtonsMenu(body, options) {
-        return Button.getMenu(body, options)        
-    }
-
 }

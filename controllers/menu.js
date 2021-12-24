@@ -1,29 +1,32 @@
 const Message = require('./message')
+const Button = require('./button')
+const RecognizeOption = require('./recognize/recognizeOption')
 
 module.exports = class Menu {
 
-    static getMessages() {
-        let content = []
-        const messageMenu = Message.toButtonsMenu('O que você deseja obter?', 
-                                                  ['Players de música', 'Letra', 'Tradução'])
+    constructor(title, options) {
+        this.title = title
+        this.options = options
+    }
+
+    getMessages() {
+        const messageMenu = Button.getMenu(this.title, this.options)
         content.push(Message.toText(messageMenu))
         return content
     }
 
-    //TODO - usaremos a lib fuzzy para reconhecer o texto/opção
-    static recognizeOption(text) {
-        return text
-    }
+    async executeOption(text, music) {
+        const rec_option = RecognizeOption.recognize(text, this.options)
+        const option = rec_option.item //pode melhorar se pegar o refIndex (retorna o index encontrado)
 
-    static async executeOption(text, music) {
-        switch(Menu.recognizeOption(text)) {
-            case '1':
-                return await music.getLinksPlayerMusicMessages()
-            case '2':
-                return false
-            case '3':
-                return false
-        }
+        if(option == this.options[0])
+            return await music.getLinksPlayerMusicMessages()
+
+        if(option == this.options[1])
+            return false
+
+        if(option == this.options[2])
+            return false
 
         return false
     }

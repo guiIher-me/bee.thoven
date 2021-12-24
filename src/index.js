@@ -1,5 +1,5 @@
 const dotenv = require('dotenv');
-const recognizeMusic = require('../controllers/recognizeMusic')
+const recognizeMusic = require('../controllers/recognize/recognizeMusic')
 const Music = require('../controllers/music')
 const Message = require('../controllers/message')
 const Menu = require('../controllers/menu')
@@ -16,7 +16,8 @@ dotenv.config();
 const client = new Client(process.env.ZENVIA_TOKEN);
 const whatsapp = client.getChannel('whatsapp')
 
-let music;
+let music
+let menu = new Menu('O que você deseja obter?', ['Players de música', 'Letra', 'Tradução'])
 
 const webhook = new WebhookController({
   channel: 'whatsapp',
@@ -39,7 +40,7 @@ const webhook = new WebhookController({
         console.log("Música encontrada!")
 
         //show menu
-        messages = Menu.getMessages()
+        messages = menu.getMessages()
         content.push(...messages)
 
       } catch(e) {
@@ -56,7 +57,7 @@ const webhook = new WebhookController({
         if(!music) throw new Error('object music is undefined!')
 
         let text = Message.getText(messageEvent)
-        let messages = await Menu.executeOption(text, music)
+        let messages = await menu.executeOption(text, music)
         content.push(...messages)
 
       } catch(e) {
@@ -68,12 +69,7 @@ const webhook = new WebhookController({
     }
 
     whatsapp.sendMessage(messageEvent.message.to, messageEvent.message.from, ...content)
-      .then((response) => {
-        //console.debug('Response:', response);
-      })
-      .catch((e) => {
-        console.log(e);
-      })
+      .then((response) => { })
   },
 });
 
