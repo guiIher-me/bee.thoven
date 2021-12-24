@@ -22,8 +22,6 @@ module.exports = async (url) => {
       }
     })
    
-   console.log(result.data)
-    
     return result.data
   }
 

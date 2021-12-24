@@ -1,10 +1,6 @@
-let getArrayMusicLinks = require('./functionArrayLinks')
+const getArrayMusicLinks = require('./functionArrayLinks')
 const musicList = require('./musicList')
-
-const {
-    FileContent,
-    TextContent,
-} = require('@zenvia/sdk');
+const Message = require('./message')
 
 module.exports = class Music {
     constructor(music) {
@@ -52,23 +48,33 @@ module.exports = class Music {
         return text != '' ? text : false;
     }
 
-    async getMessages() {
+    async getInfoMessages() {
         let content = []
 
         const MusicInfoMessage = this.getInfo()
 
         if(MusicInfoMessage)
-          content.push(new TextContent(MusicInfoMessage))
+          content.push(Message.toText(MusicInfoMessage))
         
         if (this.hasImage())
-          content.push(new FileContent(this.music.spotify.picture, 'image/jpeg'))
+          content.push(Message.toFile(this.music.spotify.picture, 'image/jpeg'))
         
         if (this.hasAudioPreview())
-          content.push(new FileContent(this.music.spotify.preview, 'audio/mpeg'))
+          content.push(Message.toFile(this.music.spotify.preview, 'audio/mpeg'))
 
-        const linksMessage = await this.getLinksMessage()
-        if(linksMessage)
-            content.push(new TextContent(linksMessage))
+        return content
+    }
+
+    async getLinksPlayerMusicMessages() {
+        let content = []
+
+        let linksMessage = await this.getLinksMessage()
+
+        if(linksMessage) {
+            linksMessage = '*Players de Música:*\n\n' + linksMessage
+            content.push(Message.toText(linksMessage))
+        } else
+            content.push(Message.toText("Desculpe-nos, tivemos problemas para encontrar players de música, tente novamente mais tarde"))
 
         return content
     }
