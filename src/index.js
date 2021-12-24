@@ -67,7 +67,7 @@ const webhook = new WebhookController({
       }
       
     }
-
+    
     whatsapp.sendMessage(messageEvent.message.to, messageEvent.message.from, ...content)
       .then((response) => { })
   },

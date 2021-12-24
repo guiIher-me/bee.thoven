@@ -36,10 +36,10 @@ module.exports = class Menu {
             return await music.getLinksPlayerMusicMessages()
 
         if(option == 1)
-            return []
+            return [Message.toText("[dev] a fazer")]
 
         if(option == 2)
-            return []
+            return [Message.toText("[dev] a fazer")]
     }
 
 }
