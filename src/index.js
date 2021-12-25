@@ -1,15 +1,13 @@
 const dotenv = require('dotenv')
 const Music = require('../controllers/music')
 const Message = require('../controllers/message')
-const Menu = require('../controllers/menu')
+const mainMenu = require('../controllers/menu/mainMenu')
 const recognizeMusic = require('../controllers/recognize/recognizeMusic')
 
 const {
   Client,
-  TextContent,
   WebhookController
 } = require('@zenvia/sdk')
-
 
 dotenv.config();
 
@@ -17,7 +15,6 @@ const client = new Client(process.env.ZENVIA_TOKEN);
 const whatsapp = client.getChannel('whatsapp')
 
 let music
-let menu = new Menu('O que você deseja obter?', ['Players de música', 'Letra', 'Tradução'])
 
 const webhook = new WebhookController({
   channel: 'whatsapp',
@@ -40,7 +37,7 @@ const webhook = new WebhookController({
         console.log("Música encontrada!")
 
         //show menu
-        messages = menu.getMessages()
+        messages = mainMenu.getMessages()
         content.push(...messages)
 
       } catch(e) {
@@ -54,7 +51,7 @@ const webhook = new WebhookController({
       try {
 
         let text = Message.getTextFromUser(messageEvent)
-        let messages = await menu.executeOptionByText(text, music)
+        let messages = await mainMenu.executeOptionByText(text, music)
         content.push(...messages)
 
       } catch(e) {

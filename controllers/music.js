@@ -56,6 +56,9 @@ module.exports = class Music {
         if(MusicInfoMessage)
           content.push(Message.toText(MusicInfoMessage))
         
+        // comentado para economizar mensagens
+        // comentários devem serem removidos em prod
+
         // if (this.hasImage())
         //   content.push(Message.toFile(this.music.spotify.picture, 'image/jpeg'))
         
@@ -76,6 +79,22 @@ module.exports = class Music {
         } else
             content.push(Message.toText("Desculpe-nos, tivemos problemas para encontrar players de música, tente novamente mais tarde"))
 
+        return content
+    }
+
+    //TODO
+    async getLyricsMessages() {
+        let content = []
+        content.push(Message.toText("[dev] exibindo letra da música..."))
+        
+        return content
+    }
+
+    //TODO
+    async getTradutionMessages() {
+        let content = []
+        content.push(Message.toText("[dev] exibindo tradução da música..."))
+        
         return content
     }
     
