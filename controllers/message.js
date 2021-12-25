@@ -3,7 +3,15 @@ const {
     TextContent,
 } = require('@zenvia/sdk');
 
-module.exports = class Message {
+const MESSAGES = {
+    'ERROR_MUSIC_NOT_FOUND': 'Desculpe, não conseguimos reconhecer a música', 
+    'ERROR_UNEXPECTED': 'Desculpe, um erro inesperado ocorreu!\nTente novamente mais tarde...', 
+    'WELCOME': 'Olá! Envie-nos um áudio de 5s com a música que deseja descobrir!',
+    'MENU_INVALID_OPTION': 'Opção inválida, tente escolher novamente'
+}
+Object.freeze(MESSAGES)
+
+class Message {
 
     constructor() { }
 
@@ -28,3 +36,5 @@ module.exports = class Message {
     }
 
 }
+
+module.exports = { MESSAGES, Message }

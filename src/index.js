@@ -1,6 +1,6 @@
 const dotenv = require('dotenv')
 const Music = require('../controllers/music')
-const Message = require('../controllers/message')
+const { MESSAGES, Message } = require('../controllers/message')
 const mainMenu = require('../controllers/menu/mainMenu')
 const recognizeMusic = require('../controllers/recognize/recognizeMusic')
 
@@ -41,7 +41,7 @@ const webhook = new WebhookController({
         content.push(...messages)
 
       } catch(e) {
-        content.push(Message.toText('Desculpe, não conseguimos reconhecer a música'))
+        content.push(Message.toText(MESSAGES.ERROR_MUSIC_NOT_FOUND))
       }
     }
 
@@ -55,7 +55,7 @@ const webhook = new WebhookController({
         content.push(...messages)
 
       } catch(e) {
-        content.push(Message.toText('Desculpe, um erro inesperado ocorreu!\nTente novamente mais tarde...'))
+        content.push(Message.toText(MESSAGES.ERROR_UNEXPECTED))
       }
       
     }

@@ -1,4 +1,4 @@
-const Message = require('../message')
+const { MESSAGES, Message } = require('../message')
 const RecognizeOption = require('../recognize/recognizeOption')
 
 module.exports = class Menu {
@@ -34,10 +34,10 @@ module.exports = class Menu {
     }
 
     async executeOptionByText(text, music) {
-        if(!music) return [Message.toText('Olá! Envie-nos um áudio de 5s com a música que deseja descobrir!')]
+        if(!music) return [Message.toText(MESSAGES.WELCOME)]
 
         const rec_option = RecognizeOption.recognize(text, this.getFormatedOptionsArray())
-        if(!rec_option.length) return [Message.toText("Opção inválida, tente escolher novamente")]
+        if(!rec_option.length) return [Message.toText(MESSAGES.MENU_INVALID_OPTION)]
 
         const index = rec_option[0].refIndex
         return await this.options[index].execute(music)
