@@ -6,4 +6,4 @@ mainMenu.addOption(new Option('Players de música', 'getLinksPlayerMusicMessages
 mainMenu.addOption(new Option('Letra', 'getLyricsMessages'))
 mainMenu.addOption(new Option('Tradução', 'getTradutionMessages'))
 
-module.exports = mainMenu; 
+module.exports = mainMenu

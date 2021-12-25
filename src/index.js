@@ -9,9 +9,9 @@ const {
   WebhookController
 } = require('@zenvia/sdk')
 
-dotenv.config();
+dotenv.config()
 
-const client = new Client(process.env.ZENVIA_TOKEN);
+const client = new Client(process.env.ZENVIA_TOKEN)
 const whatsapp = client.getChannel('whatsapp')
 
 let music
