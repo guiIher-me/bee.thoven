@@ -1,25 +1,19 @@
 module.exports = (params) => {
+
+    let players = [
+        {name: 'Deezer', prop: 'deezer'},
+        {name: 'Apple Music', prop: 'appleMusic'},
+        {name: 'Spotify', prop: 'spotify'}
+    ]
+
     let arrayLinks = []
-
-    if (params.deezer) {
-        arrayLinks.push({
-            name: "Deezer",
-            url: params.deezer.url
-        })
-    }
-
-    if (params.appleMusic) {
-        arrayLinks.push({
-            name: "Apple Music",
-            url: params.appleMusic.url
-        })
-    }
-    if (params.spotify) {
-        arrayLinks.push({
-            name: "Spotify",
-            url: params.spotify.url
-        })
-    }
+    players.forEach((player) => {
+        if(params[player.prop])
+            arrayLinks.push({
+                name: player.name, 
+                url: params[player.prop].url
+            })
+    })
 
     return arrayLinks
 }
