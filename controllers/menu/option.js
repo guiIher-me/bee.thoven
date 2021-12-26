@@ -1,9 +1,9 @@
 
 module.exports = class Option {
     
-    constructor(text = '', functionName = null) {
+    constructor(text = '', action = null) {
         this.text = text
-        this.functionName = functionName
+        this.action = action
     }
 
     setText(text) {
@@ -14,13 +14,13 @@ module.exports = class Option {
         return this.text
     }
 
-    setAction(functionName) {
-        this.functionName = functionName
+    setAction(action) {
+        this.action = action
     }
 
-    async execute(obj) {
+    async execute(params) {
         try {
-            return await obj[this.functionName]()
+            return await this.action(params)
         } catch(e) {
             console.log(`Error executing option "${this.text}"`)
             throw new Error(`Error executing option "${this.text}"`)

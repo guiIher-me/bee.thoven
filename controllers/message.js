@@ -9,8 +9,7 @@ const MESSAGES = {
     'MENU_INVALID_OPTION': 'Opção inválida, tente escolher novamente',
     'WELCOME': 'Olá! Envie-nos um áudio de 5s com a música que deseja descobrir!',
     'UNKNOW_MESSAGE_TYPE': 'Desculpe, não conseguimos compreender!\nTente enviar uma música!',
-
-    'GOOD_BYE': 'Quando quiser, bastar enviar novamente um áudio pra gente!\n Até a próxima!'
+    'GOOD_BYE': 'Quando quiser, bastar enviar novamente um áudio pra gente! Até a próxima! 😉'
 }
 Object.freeze(MESSAGES)
 

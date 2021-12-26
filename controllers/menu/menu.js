@@ -40,7 +40,7 @@ module.exports = class Menu {
         if(!rec_option.length) return [Message.toText(MESSAGES.MENU_INVALID_OPTION)]
 
         const index = rec_option[0].refIndex
-        return await this.options[index].execute(music)
+        return await this.options[index].execute({ music })
     }
 
 }
