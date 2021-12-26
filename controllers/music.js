@@ -1,6 +1,6 @@
 const getArrayMusicLinks = require('./functionArrayLinks')
 const musicList = require('./musicList')
-const Message = require('./message')
+const { Message } = require('./message')
 
 module.exports = class Music {
     constructor(music) {

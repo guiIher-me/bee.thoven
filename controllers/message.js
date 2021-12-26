@@ -6,8 +6,10 @@ const {
 const MESSAGES = {
     'ERROR_MUSIC_NOT_FOUND': 'Desculpe, não conseguimos reconhecer a música', 
     'ERROR_UNEXPECTED': 'Desculpe, um erro inesperado ocorreu!\nTente novamente mais tarde...', 
+    'MENU_INVALID_OPTION': 'Opção inválida, tente escolher novamente',
     'WELCOME': 'Olá! Envie-nos um áudio de 5s com a música que deseja descobrir!',
-    'MENU_INVALID_OPTION': 'Opção inválida, tente escolher novamente'
+    
+    'GOOD_BYE': 'Quando quiser, bastar enviar novamente um áudio pra gente!\n Até a próxima!'
 }
 Object.freeze(MESSAGES)
 
@@ -21,6 +23,10 @@ class Message {
 
     static isText(messageEvent) {
         return messageEvent.message.contents[0].type === 'text'
+    }
+
+    static getFileFromUser(messageEvent) {
+        return messageEvent.message.contents[0].fileUrl
     }
 
     static getTextFromUser(messageEvent) {

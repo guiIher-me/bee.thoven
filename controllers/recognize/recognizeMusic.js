@@ -1,5 +1,5 @@
-var axios = require("axios");
-const dotenv = require('dotenv');
+var axios = require("axios")
+const dotenv = require('dotenv')
 
 module.exports = async (url) => {
 
