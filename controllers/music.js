@@ -51,19 +51,19 @@ module.exports = class Music {
     async getInfoMessages() {
         let content = []
 
-        const MusicInfoMessage = this.getInfo()
+        const musicInfoMessage = this.getInfo()
 
-        if(MusicInfoMessage)
-          content.push(Message.toText(MusicInfoMessage))
+        if(musicInfoMessage)
+          content.push(Message.toText(musicInfoMessage))
         
-        // comentado para economizar mensagens
-        // comentários devem serem removidos em prod
+        // comentado para economizar mensagens enviadas ao webhook
+        // descomente as linhas abaixo em prod
 
-        if (this.hasImage())
-          content.push(Message.toFile(this.music.spotify.picture, 'image/jpeg'))
+        // if (this.hasImage())
+        //   content.push(Message.toFile(this.music.spotify.picture, 'image/jpeg'))
         
-        if (this.hasAudioPreview())
-          content.push(Message.toFile(this.music.spotify.preview, 'audio/mpeg'))
+        // if (this.hasAudioPreview())
+        //   content.push(Message.toFile(this.music.spotify.preview, 'audio/mpeg'))
 
         return content
     }
