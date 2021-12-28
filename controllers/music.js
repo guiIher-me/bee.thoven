@@ -101,13 +101,13 @@ module.exports = class Music {
         dotenv.config();
 
         try {
-
+            const LANG_PTBR = 1
             let request = `https://api.vagalume.com.br/search.php?art=${this.music.artist}&mus=${this.music.title}&apikey=${process.env.VAGALUME_TOKEN}`
             let response = await axios.get(request)            
             if(!response.data) throw new Error('Tradução não encontrada!')
 
             let translations = response.data.mus[0].translate
-            let tradution = translations.find((trad) => trad.lang == 1)
+            let tradution = translations.find((trad) => trad.lang == LANG_PTBR)
             content.push(Message.toText(tradution.text))
 
         } catch(e) {
