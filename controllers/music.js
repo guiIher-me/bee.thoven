@@ -1,6 +1,8 @@
 const getArrayMusicLinks = require('./functionArrayLinks')
 const musicList = require('./musicList')
 const { MESSAGES, Message } = require('./message')
+const axios = require('axios')
+const dotenv = require('dotenv')
 
 module.exports = class Music {
     constructor(music) {
@@ -85,17 +87,41 @@ module.exports = class Music {
     //TODO
     async getLyricsMessages() {
         let content = []
-        content.push(Message.toText("[dev] exibindo letra da música..."))
-        
+        if(this.music.lyrics)
+            content.push(Message.toText(this.music.lyrics))
+        else
+            content.push(Message.toText(MESSAGES.ERROR_LYRICS_NOT_FOUND))
+
         return content
     }
 
     //TODO
     async getTradutionMessages() {
         let content = []
-        content.push(Message.toText("[dev] exibindo tradução da música..."))
-        
-        return content
+        dotenv.config();
+
+        try {
+
+            let request = `https://api.vagalume.com.br/search.php?art=${this.music.artist}&mus=${this.music.title}&apikey=${process.env.VAGALUME_TOKEN}`
+            let response = await axios.get(request)            
+
+            let translations = response.data.mus[0].translate
+            let tradution = translations.find((trad) => trad.lang == 1)
+            if(tradution)
+                content.push(Message.toText(tradution.text))
+            else
+                content.push(Message.toText(MESSAGES.ERROR_TRADUTION_NOT_FOUND))
+
+        } catch(e) {
+            content.push(Message.toText('Erro inesperado :('))
+        } finally {
+            return content
+        }
+    }
+
+    //TODO
+    async findMusicByText(text) {
+        return []       
     }
     
 }

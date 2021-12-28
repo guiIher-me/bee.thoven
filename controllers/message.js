@@ -11,7 +11,8 @@ const MESSAGES = {
     'UNKNOW_MESSAGE_TYPE': 'Hmm... Não conseguimos entender esse formato de mensagem.\nEnvie apenas o áudio da música!',
     'GOOD_BYE': 'Quando quiser, é só enviar novamente um áudio pra gente!\nAté a próxima 👋',
     'ERROR_PLAYERS_NOT_FOUND': 'Ops! Não foi possível encontrar players disponíveis para essa música',
-
+    'ERROR_LYRICS_NOT_FOUND': 'Ops! Não foi possível encontrar a letra para essa música',
+    'ERROR_TRADUTION_NOT_FOUND': 'Ops! Não foi possível encontrar a tradução para essa música',
     'MUSIC_FOUND': 'Oba! Encontrei essa aqui 👇\n\n'
 }
 Object.freeze(MESSAGES)
@@ -36,8 +37,8 @@ class Message {
         return messageEvent.message.contents[0].text
     }
 
-    static toFile(message) {
-        return new FileContent(message)
+    static toFile(message, mimeType) {
+        return new FileContent(message, mimeType)
     }
 
     static toText(message) {
