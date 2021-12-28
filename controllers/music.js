@@ -1,6 +1,6 @@
 const getArrayMusicLinks = require('./functionArrayLinks')
 const musicList = require('./musicList')
-const { Message } = require('./message')
+const { MESSAGES, Message } = require('./message')
 
 module.exports = class Music {
     constructor(music) {
@@ -19,7 +19,7 @@ module.exports = class Music {
         if (this.music.album)
             text = `${text}Álbum: *${this.music.album}*\n`
 
-        return text != '' ? text : false
+        return text != '' ? MESSAGES.MUSIC_FOUND + text : false
     }
 
     hasImage() {
@@ -77,7 +77,7 @@ module.exports = class Music {
             linksMessage = '*Players de Música:*\n\n' + linksMessage
             content.push(Message.toText(linksMessage))
         } else
-            content.push(Message.toText("Desculpe-nos, tivemos problemas para encontrar players de música, tente novamente mais tarde"))
+            content.push(Message.toText(MESSAGES.ERROR_PLAYERS_NOT_FOUND))
 
         return content
     }

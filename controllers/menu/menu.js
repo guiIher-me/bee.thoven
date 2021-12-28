@@ -18,12 +18,12 @@ module.exports = class Menu {
 
     getFormatedOptionsArray() {
         return this.options.map((option, index) => {
-            return `${index+1}. ${option.text}`
+            return `*${index+1}.* ${option.text}`
         })
     }
 
     toString() {
-        let menu = `*${this.title}*\n\n`
+        let menu = `${this.title}\n\n`
         this.getFormatedOptionsArray().forEach(element => menu += `${element}\n`);
         return menu
     }

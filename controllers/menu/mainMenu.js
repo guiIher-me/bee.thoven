@@ -2,7 +2,7 @@ const Menu = require('./menu')
 const { MESSAGES, Message } = require('../message')
 const Option = require('./option')
 
-let mainMenu = new Menu('Deseja obter mais detalhes?')
+let mainMenu = new Menu('Escolha uma das opções para ver mais detalhes:')
 
 mainMenu.addOption(new Option('Players de música', async (params) => {
     let { music } = {...params}
