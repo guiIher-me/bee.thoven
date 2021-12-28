@@ -104,16 +104,14 @@ module.exports = class Music {
 
             let request = `https://api.vagalume.com.br/search.php?art=${this.music.artist}&mus=${this.music.title}&apikey=${process.env.VAGALUME_TOKEN}`
             let response = await axios.get(request)            
+            if(!response.data) throw new Error('Tradução não encontrada!')
 
             let translations = response.data.mus[0].translate
             let tradution = translations.find((trad) => trad.lang == 1)
-            if(tradution)
-                content.push(Message.toText(tradution.text))
-            else
-                content.push(Message.toText(MESSAGES.ERROR_TRADUTION_NOT_FOUND))
+            content.push(Message.toText(tradution.text))
 
         } catch(e) {
-            content.push(Message.toText('Erro inesperado :('))
+            content.push(Message.toText(MESSAGES.ERROR_TRADUTION_NOT_FOUND))
         } finally {
             return content
         }
