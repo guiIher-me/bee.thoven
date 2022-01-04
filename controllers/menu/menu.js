@@ -40,8 +40,18 @@ module.exports = class Menu {
         if(!rec_option.length) return [Message.toText(MESSAGES.MENU_INVALID_OPTION)]
 
         const index = rec_option[0].refIndex
+        const option = this.options[index]
 
-        return await this.options[index].execute(system)
+        let content = []
+        let messages = await option.execute(system)
+        content.push(...messages)
+
+        if(option.reshowMenu()) {
+            messages = await this.getMessages()
+            content.push(...messages)
+        }
+
+        return content
     }
 
 }

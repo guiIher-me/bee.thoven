@@ -1,21 +1,14 @@
 
 module.exports = class Option {
     
-    constructor(text = '', action = null) {
+    constructor(text = '', show_menu, action = null) {
         this.text = text
         this.action = action
+        this.show_menu = show_menu
     }
 
-    setText(text) {
-        this.text = text
-    }
-
-    getText() {
-        return this.text
-    }
-
-    setAction(action) {
-        this.action = action
+    reshowMenu() {
+        return this.show_menu
     }
 
     async execute(params) {
