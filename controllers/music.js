@@ -85,7 +85,9 @@ module.exports = class Music {
     //TODO
     async getLyricsMessages() {
         let content = []
-        content.push(Message.toText("[dev] exibindo letra da música..."))
+        
+
+       // content.push(Message.toText("[dev] exibindo letra da música..."))
         
         return content
     }
