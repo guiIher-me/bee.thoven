@@ -61,11 +61,11 @@ module.exports = class Music {
         // comentado para economizar mensagens enviadas ao webhook
         // descomente as linhas abaixo em prod
 
-        // if (this.hasImage())
-        //   content.push(Message.toFile(this.music.spotify.picture, 'image/jpeg'))
+        if (this.hasImage())
+          content.push(Message.toFile(this.music.spotify.picture, 'image/jpeg'))
         
-        // if (this.hasAudioPreview())
-        //   content.push(Message.toFile(this.music.spotify.preview, 'audio/mpeg'))
+        if (this.hasAudioPreview())
+          content.push(Message.toFile(this.music.spotify.preview, 'audio/mpeg'))
 
         return content
     }

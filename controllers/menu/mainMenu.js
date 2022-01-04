@@ -17,6 +17,7 @@ mainMenu.addOption(new Option('Tradução', async (params) => {
     return await music.getTradutionMessages()
 }))
 mainMenu.addOption(new Option('Não, obrigado', async (params) => {
+    params.music = null //reset music obj
     return [Message.toText(MESSAGES.GOOD_BYE)]
 }))
 
