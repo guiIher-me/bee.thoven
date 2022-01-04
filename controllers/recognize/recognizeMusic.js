@@ -26,8 +26,9 @@ module.exports = async (url) => {
     }
 
     let resposta = await chamada(form)
-
+    
     if (resposta && resposta.result) {
+     
       return {
         artist: resposta.result.artist,
         title: resposta.result.title,
