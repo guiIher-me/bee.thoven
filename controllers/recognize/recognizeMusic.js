@@ -9,7 +9,7 @@ module.exports = async (url) => {
     const form = {
       'api_token': process.env.AUDD_TOKEN,
       'url': url,
-      'return': 'deezer'
+      'return': 'lyrics,deezer'
     }
 
     const chamada = async (form) => {
@@ -26,13 +26,13 @@ module.exports = async (url) => {
     }
 
     let resposta = await chamada(form)
-    
 
     if (resposta && resposta.result) {
       return {
         artist: resposta.result.artist,
         title: resposta.result.title,
         album: resposta.result.album,
+        lyrics: resposta.result.lyrics ? resposta.result.lyrics.lyrics : undefined,
         spotify: {
           picture: resposta.result.deezer && resposta.result.deezer.artist ? resposta.result.deezer.artist.picture : undefined,
           preview: resposta.result.deezer.preview ? resposta.result.deezer.preview : undefined,

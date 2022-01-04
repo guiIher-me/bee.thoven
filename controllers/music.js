@@ -1,6 +1,8 @@
 const getArrayMusicLinks = require('./functionArrayLinks')
 const musicList = require('./musicList')
 const { MESSAGES, Message } = require('./message')
+const axios = require('axios')
+const dotenv = require('dotenv')
 
 module.exports = class Music {
     constructor(music) {
@@ -85,19 +87,39 @@ module.exports = class Music {
     //TODO
     async getLyricsMessages() {
         let content = []
-        
+        if(this.music.lyrics)
+            content.push(Message.toText(this.music.lyrics))
+        else
+            content.push(Message.toText(MESSAGES.ERROR_LYRICS_NOT_FOUND))
 
-       // content.push(Message.toText("[dev] exibindo letra da música..."))
-        
         return content
     }
 
     //TODO
     async getTradutionMessages() {
         let content = []
-        content.push(Message.toText("[dev] exibindo tradução da música..."))
-        
-        return content
+        dotenv.config();
+
+        try {
+            const LANG_PTBR = 1
+            let request = `https://api.vagalume.com.br/search.php?art=${this.music.artist}&mus=${this.music.title}&apikey=${process.env.VAGALUME_TOKEN}`
+            let response = await axios.get(request)            
+            if(!response.data) throw new Error('Tradução não encontrada!')
+
+            let translations = response.data.mus[0].translate
+            let tradution = translations.find((trad) => trad.lang == LANG_PTBR)
+            content.push(Message.toText(tradution.text))
+
+        } catch(e) {
+            content.push(Message.toText(MESSAGES.ERROR_TRADUTION_NOT_FOUND))
+        } finally {
+            return content
+        }
+    }
+
+    //TODO
+    async findMusicByText(text) {
+        return []       
     }
     
 }
