@@ -28,19 +28,20 @@ module.exports = class Menu {
         return menu
     }
 
-    getMessages() {
+    async getMessages() {
         let messages = this.toString()
         return [Message.toText(messages)]
     }
 
-    async executeOptionByText(text, music) {
-        if(!music) return [Message.toText(MESSAGES.WELCOME)]
+    async executeOptionByText(text, system) {
+        if(!system.music) return [Message.toText(MESSAGES.WELCOME)]
 
         const rec_option = RecognizeOption.recognize(text, this.getFormatedOptionsArray())
         if(!rec_option.length) return [Message.toText(MESSAGES.MENU_INVALID_OPTION)]
 
         const index = rec_option[0].refIndex
-        return await this.options[index].execute({ music })
+
+        return await this.options[index].execute(system)
     }
 
 }
