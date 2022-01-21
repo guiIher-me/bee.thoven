@@ -2,6 +2,7 @@ const Infos = require('./infos/Infos')
 const Lyrics = require('./lyrics/Lyrics')
 const Players = require('./players/Players')
 const Translator = require('./tradutions/Translator')
+const NullFeature = require('./NullFeature')
 
 class MusicFeatureFactory {
     static createFeature(featurename, music) {
@@ -13,8 +14,10 @@ class MusicFeatureFactory {
             return new Players(music)
         else if(featurename === 'tradutions')
             return new Translator(music)
-        else
-            throw error('undefined feature');
+        else {
+            console.error(`undefined feature ${featurename}`);
+            return new NullFeature()
+        } 
     }
 }
 
