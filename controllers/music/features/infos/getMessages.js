@@ -1,6 +1,6 @@
 const getMusicInfo = require('./getMusicInfo')
-const MessageHelper = require('../../message/MessageHelper')
-const MusicHelper = require('../MusicHelper');
+const MessageHelper = require('../../../message/MessageHelper')
+const MusicHelper = require('../../MusicHelper');
 
 function getMessages(music) {
     const musicInfoText = getMusicInfo(music)

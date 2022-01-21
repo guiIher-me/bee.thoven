@@ -1,5 +1,5 @@
 
-function filterLinks(links) {
+function formatLinks(links) {
     if(!links) return false
 
     let text = ''
@@ -10,4 +10,4 @@ function filterLinks(links) {
     return text != '' ? text : false
 }
 
-module.exports = filterLinks
+module.exports = formatLinks

@@ -1,7 +1,7 @@
-const Infos = require('./infos/Infos')
-const Players = require('./Players/Players')
-const Lyrics = require('./lyrics/Lyrics')
-const Translator = require('./tradutions/Translator')
+const Infos = require('./features/infos/Infos')
+const Players = require('./features/Players/Players')
+const Lyrics = require('./features/lyrics/Lyrics')
+const Translator = require('./features/tradutions/Translator')
 
 class Music {
     constructor(music) {

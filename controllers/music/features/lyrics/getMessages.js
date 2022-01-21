@@ -1,5 +1,5 @@
-const MessageHelper = require('../../message/MessageHelper')
-const MESSAGES = require('../../message/messages.enum')
+const MessageHelper = require('../../../message/MessageHelper')
+const MESSAGES = require('../../../message/messages.enum')
 
 async function getMessages(music) {
     let content = []

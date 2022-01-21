@@ -1,5 +1,5 @@
-module.exports = (params) => {
 
+function getSpecificLinks(params) {
     let players = [
         {name: 'Deezer', prop: 'deezer'},
         {name: 'Apple Music', prop: 'appleMusic'},
@@ -17,3 +17,5 @@ module.exports = (params) => {
 
     return arrayLinks
 }
+
+module.exports = getSpecificLinks

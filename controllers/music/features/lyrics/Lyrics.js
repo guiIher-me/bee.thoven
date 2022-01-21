@@ -1,7 +1,7 @@
-
 const getMessages = require('./getMessages');
+const MusicFeature = require('../MusicFeature')
 
-class Lyrics {
+class Lyrics extends MusicFeature {
     constructor(music) {
         this.music = music
     }

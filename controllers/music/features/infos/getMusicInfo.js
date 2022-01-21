@@ -1,4 +1,4 @@
-const MESSAGES = require('../../message/messages.enum')
+const MESSAGES = require('../../../message/messages.enum')
 
 function getMusicInfo(music) {
     let text = ''
