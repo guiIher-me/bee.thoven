@@ -1,16 +1,16 @@
 const Music = require('./music')
-const { MESSAGES, Message } = require('./message')
+const { MESSAGES, MessageHelper } = require('./MessageHelper')
 const mainMenu = require('./menu/mainMenu')
 const recognizeMusic = require('./recognize/recognizeMusic')
 
 let system = {}
-module.exports = class Flow {
+class Flow {
 
     static async tryRecognizeAudio(messageEvent) {
         let content = []
 
         try {
-            const rec_music = await recognizeMusic(Message.getFileFromUser(messageEvent))
+            const rec_music = await recognizeMusic(MessageHelper.getFileFromUser(messageEvent))
             if(!rec_music) throw new Error('Music not found!')
 
             system.music = new Music(rec_music)
@@ -24,8 +24,9 @@ module.exports = class Flow {
             messages = await mainMenu.getMessages()
             content.push(...messages)
 
-        } catch(e) {
-            content.push(Message.toText(MESSAGES.ERROR_MUSIC_NOT_FOUND))
+        } catch(error) {
+            console.log(error)
+            content.push(MessageHelper.toText(MESSAGES.ERROR_MUSIC_NOT_FOUND))
         } finally {
             return content
         }
@@ -35,13 +36,15 @@ module.exports = class Flow {
         let content = []
 
         try {
-            let text = Message.getTextFromUser(messageEvent)
+            let text = MessageHelper.getTextFromUser(messageEvent)
             let messages = await mainMenu.executeOptionByText(text, system)
             content.push(...messages)
         } catch(e) {
-            content.push(Message.toText(MESSAGES.ERROR_UNEXPECTED))
+            content.push(MessageHelper.toText(MESSAGES.ERROR_UNEXPECTED))
         } finally {
             return content
         }
     }
 }
+
+module.exports = Flow

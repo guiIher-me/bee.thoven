@@ -17,7 +17,7 @@ const MESSAGES = {
 }
 Object.freeze(MESSAGES)
 
-class Message {
+class MessageHelper {
 
     constructor() { }
 
@@ -47,4 +47,4 @@ class Message {
 
 }
 
-module.exports = { MESSAGES, Message }
+module.exports = { MESSAGES, MessageHelper }

@@ -1,6 +1,6 @@
 const getArrayMusicLinks = require('./functionArrayLinks')
 const musicList = require('./musicList')
-const { MESSAGES, Message } = require('./message')
+const { MESSAGES, MessageHelper } = require('./MessageHelper')
 const axios = require('axios')
 const dotenv = require('dotenv')
 
@@ -47,7 +47,7 @@ module.exports = class Music {
             text += `*${musicLink.name}*:\n${musicLink.url}\n\n`
         });
         
-        return text != '' ? text : false;
+        return text != '' ? text : false
     }
 
     async getInfoMessages() {
@@ -56,16 +56,16 @@ module.exports = class Music {
         const musicInfoMessage = this.getInfo()
 
         if(musicInfoMessage)
-          content.push(Message.toText(musicInfoMessage))
+          content.push(MessageHelper.toText(musicInfoMessage))
         
         // comentado para economizar mensagens enviadas ao webhook
         // descomente as linhas abaixo em prod
 
         if (this.hasImage())
-          content.push(Message.toFile(this.music.spotify.picture, 'image/jpeg'))
+          content.push(MessageHelper.toFile(this.music.spotify.picture, 'image/jpeg'))
         
         if (this.hasAudioPreview())
-          content.push(Message.toFile(this.music.spotify.preview, 'audio/mpeg'))
+          content.push(MessageHelper.toFile(this.music.spotify.preview, 'audio/mpeg'))
 
         return content
     }
@@ -77,25 +77,23 @@ module.exports = class Music {
 
         if(linksMessage) {
             linksMessage = '*Players de Música:*\n\n' + linksMessage
-            content.push(Message.toText(linksMessage))
+            content.push(MessageHelper.toText(linksMessage))
         } else
-            content.push(Message.toText(MESSAGES.ERROR_PLAYERS_NOT_FOUND))
+            content.push(MessageHelper.toText(MESSAGES.ERROR_PLAYERS_NOT_FOUND))
 
         return content
     }
 
-    //TODO
     async getLyricsMessages() {
         let content = []
         if(this.music.lyrics)
-            content.push(Message.toText(this.music.lyrics))
+            content.push(MessageHelper.toText(this.music.lyrics))
         else
-            content.push(Message.toText(MESSAGES.ERROR_LYRICS_NOT_FOUND))
+            content.push(MessageHelper.toText(MESSAGES.ERROR_LYRICS_NOT_FOUND))
 
         return content
     }
 
-    //TODO
     async getTradutionMessages() {
         let content = []
         dotenv.config();
@@ -108,10 +106,10 @@ module.exports = class Music {
 
             let translations = response.data.mus[0].translate
             let tradution = translations.find((trad) => trad.lang == LANG_PTBR)
-            content.push(Message.toText(tradution.text))
+            content.push(MessageHelper.toText(tradution.text))
 
         } catch(e) {
-            content.push(Message.toText(MESSAGES.ERROR_TRADUTION_NOT_FOUND))
+            content.push(MessageHelper.toText(MESSAGES.ERROR_TRADUTION_NOT_FOUND))
         } finally {
             return content
         }

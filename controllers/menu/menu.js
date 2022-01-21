@@ -1,8 +1,7 @@
-const { MESSAGES, Message } = require('../message')
+const { MESSAGES, MessageHelper } = require('../MessageHelper')
 const RecognizeOption = require('../recognize/recognizeOption')
 
-module.exports = class Menu {
-
+class Menu {
     constructor(title = '', options = []) {
         this.title = title
         this.options = options
@@ -24,20 +23,20 @@ module.exports = class Menu {
 
     toString() {
         let menu = `${this.title}\n\n`
-        this.getFormatedOptionsArray().forEach(element => menu += `${element}\n`);
+        this.getFormatedOptionsArray().forEach(element => menu += `${element}\n`)
         return menu
     }
 
     async getMessages() {
         let messages = this.toString()
-        return [Message.toText(messages)]
+        return [MessageHelper.toText(messages)]
     }
 
     async executeOptionByText(text, system) {
-        if(!system.music) return [Message.toText(MESSAGES.WELCOME)]
+        if(!system.music) return [MessageHelper.toText(MESSAGES.WELCOME)]
 
         const rec_option = RecognizeOption.recognize(text, this.getFormatedOptionsArray())
-        if(!rec_option.length) return [Message.toText(MESSAGES.MENU_INVALID_OPTION)]
+        if(!rec_option.length) return [MessageHelper.toText(MESSAGES.MENU_INVALID_OPTION)]
 
         const index = rec_option[0].refIndex
         const option = this.options[index]
@@ -55,3 +54,5 @@ module.exports = class Menu {
     }
 
 }
+
+module.exports = Menu;

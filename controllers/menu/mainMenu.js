@@ -1,5 +1,5 @@
 const Menu = require('./menu')
-const { MESSAGES, Message } = require('../message')
+const { MESSAGES, MessageHelper } = require('../MessageHelper')
 const Option = require('./option')
 
 let mainMenu = new Menu('Escolha uma das opções para ver mais detalhes:')
@@ -18,7 +18,7 @@ mainMenu.addOption(new Option('Tradução', true, async (params) => {
 }))
 mainMenu.addOption(new Option('Não, obrigado', false, async (params) => {
     params.music = null //reset music obj
-    return [Message.toText(MESSAGES.GOOD_BYE)]
+    return [MessageHelper.toText(MESSAGES.GOOD_BYE)]
 }))
 
 module.exports = mainMenu
