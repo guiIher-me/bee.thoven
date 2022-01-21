@@ -1,5 +1,6 @@
 const Recognizer = require('../recognize/Recognizer')
 const MessageHelper = require('./MessageHelper')
+const MESSAGES = require('./messages.enum')
 
 async function handlerMessage(messageEvent) {
     const inputMessage = MessageHelper.getContent(messageEvent);

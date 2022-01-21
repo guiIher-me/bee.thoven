@@ -1,4 +1,4 @@
-const Menu = require('./menu')
+const Menu = require('./Menu')
 const MessageHelper = require('../message/MessageHelper')
 const MESSAGES = require('../message/messages.enum')
 const Option = require('./option')

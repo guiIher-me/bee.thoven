@@ -3,7 +3,7 @@ const MusicFeature = require('../MusicFeature')
 
 class Lyrics extends MusicFeature {
     constructor(music) {
-        this.music = music
+        super(music)
     }
 
     async getMessages() {

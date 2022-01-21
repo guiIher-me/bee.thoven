@@ -1,9 +1,6 @@
 
 class MusicFeature {
     constructor(music) {
-      if (this.constructor === MusicFeature)
-        throw new Error("Abstract classes can't be instantiated.");
-      
       this.music = music
     }
   
