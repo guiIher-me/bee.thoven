@@ -3,10 +3,10 @@ const MessageHelper = require('../message/MessageHelper')
 const MESSAGES = require('../message/messages.enum')
 const mainMenu = require('../menu/mainMenu')
 const recognizeMusic = require('./recognizeMusic')
+const MusicFeatureFactory = require('../music/features/MusicFeatureFactory')
 
 let system = {}
 class Recognizer {
-
     static async tryRecognizeAudio(inputMessage) {
         let content = []
 
@@ -14,10 +14,11 @@ class Recognizer {
             const rec_music = await recognizeMusic(MessageHelper.getFileFromUser(inputMessage))
             if(!rec_music) throw new Error('Music not found!')
 
-            system.music = new Music(rec_music)
+            system.music = rec_music;
 
             //show music items
-            let messages = await system.music.getInfos()
+            const infos = MusicFeatureFactory.createFeature('infos', rec_music);
+            let messages = await infos.getMessages()
             content.push(...messages)
 
             //show menu
