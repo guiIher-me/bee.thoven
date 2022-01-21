@@ -1,6 +1,6 @@
 const getArrayMusicLinks = require('./functionArrayLinks')
 const musicList = require('./musicList')
-const { MESSAGES, MessageHelper } = require('./MessageHelper')
+const { MESSAGES, MessageHelper } = require('./message/MessageHelper')
 const axios = require('axios')
 const dotenv = require('dotenv')
 
@@ -61,11 +61,11 @@ module.exports = class Music {
         // comentado para economizar mensagens enviadas ao webhook
         // descomente as linhas abaixo em prod
 
-        if (this.hasImage())
-          content.push(MessageHelper.toFile(this.music.spotify.picture, 'image/jpeg'))
+        // if (this.hasImage())
+        //   content.push(MessageHelper.toFile(this.music.spotify.picture, 'image/jpeg'))
         
-        if (this.hasAudioPreview())
-          content.push(MessageHelper.toFile(this.music.spotify.preview, 'audio/mpeg'))
+        // if (this.hasAudioPreview())
+        //   content.push(MessageHelper.toFile(this.music.spotify.preview, 'audio/mpeg'))
 
         return content
     }

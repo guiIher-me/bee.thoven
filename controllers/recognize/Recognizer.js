@@ -1,16 +1,16 @@
-const Music = require('./music')
-const { MESSAGES, MessageHelper } = require('./MessageHelper')
-const mainMenu = require('./menu/mainMenu')
-const recognizeMusic = require('./recognize/recognizeMusic')
+const Music = require('../music')
+const { MESSAGES, MessageHelper } = require('../message/MessageHelper')
+const mainMenu = require('../menu/mainMenu')
+const recognizeMusic = require('./recognizeMusic')
 
 let system = {}
-class Flow {
+class Recognizer {
 
-    static async tryRecognizeAudio(messageEvent) {
+    static async tryRecognizeAudio(inputMessage) {
         let content = []
 
         try {
-            const rec_music = await recognizeMusic(MessageHelper.getFileFromUser(messageEvent))
+            const rec_music = await recognizeMusic(MessageHelper.getFileFromUser(inputMessage))
             if(!rec_music) throw new Error('Music not found!')
 
             system.music = new Music(rec_music)
@@ -18,7 +18,6 @@ class Flow {
             //show music items
             let messages = await system.music.getInfoMessages()
             content.push(...messages)
-            console.log("Música encontrada!")
 
             //show menu
             messages = await mainMenu.getMessages()
@@ -32,11 +31,11 @@ class Flow {
         }
     }
 
-    static async tryRecognizeText(messageEvent) {
+    static async tryRecognizeText(inputMessage) {
         let content = []
 
         try {
-            let text = MessageHelper.getTextFromUser(messageEvent)
+            let text = MessageHelper.getTextFromUser(inputMessage)
             let messages = await mainMenu.executeOptionByText(text, system)
             content.push(...messages)
         } catch(e) {
@@ -47,4 +46,4 @@ class Flow {
     }
 }
 
-module.exports = Flow
+module.exports = Recognizer

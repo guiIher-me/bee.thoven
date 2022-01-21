@@ -21,20 +21,25 @@ class MessageHelper {
 
     constructor() { }
 
-    static isAudio(messageEvent) {
-        return messageEvent.message.contents[0].type === 'file' && messageEvent.message.contents[0].fileMimeType.includes('audio')
+    static getContent(messageEvent) {
+        console.log(messageEvent)
+        return messageEvent.message.contents[0]
     }
 
-    static isText(messageEvent) {
-        return messageEvent.message.contents[0].type === 'text'
+    static isAudio(message) {
+        return message.type === 'file' && message.fileMimeType.includes('audio')
     }
 
-    static getFileFromUser(messageEvent) {
-        return messageEvent.message.contents[0].fileUrl
+    static isText(message) {
+        return message.type === 'text'
     }
 
-    static getTextFromUser(messageEvent) {
-        return messageEvent.message.contents[0].text
+    static getFileFromUser(message) {
+        return message.fileUrl
+    }
+
+    static getTextFromUser(message) {
+        return message.text
     }
 
     static toFile(message, mimeType) {

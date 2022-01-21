@@ -1,2 +1,3 @@
 const Webhook = require('../controllers/webhook/Webhook')
-Webhook.boot('whatsapp')
+const webhook = new Webhook('whatsapp')
+webhook.boot()

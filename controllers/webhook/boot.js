@@ -1,10 +1,9 @@
-const handlerMessage = require('./handlerMessage');
 const { WebhookController } = require('@zenvia/sdk')
 
-function boot(channel) {
+function boot(channel, messageManager) {
     const zenviaWebhook = new WebhookController({
         channel,
-        messageEventHandler: async (messageEvent) => await handlerMessage(channel, messageEvent)
+        messageEventHandler: async (messageEvent) => await messageManager.handler(messageEvent)
     })
 
     zenviaWebhook.on('listening', () => {

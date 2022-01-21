@@ -1,4 +1,4 @@
-const { MESSAGES, MessageHelper } = require('../MessageHelper')
+const { MESSAGES, MessageHelper } = require('../message/MessageHelper')
 const RecognizeOption = require('../recognize/recognizeOption')
 
 class Menu {

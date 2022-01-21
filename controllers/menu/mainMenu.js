@@ -1,5 +1,5 @@
 const Menu = require('./menu')
-const { MESSAGES, MessageHelper } = require('../MessageHelper')
+const { MESSAGES, MessageHelper } = require('../message/MessageHelper')
 const Option = require('./option')
 
 let mainMenu = new Menu('Escolha uma das opções para ver mais detalhes:')
