@@ -1,6 +1,5 @@
 let axios = require("axios");
 
-
 module.exports = async (url) => {
     try {
         let result = await axios({

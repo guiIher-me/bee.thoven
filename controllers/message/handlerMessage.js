@@ -1,5 +1,5 @@
 const Recognizer = require('../recognize/Recognizer')
-const { MessageHelper } = require('./MessageHelper')
+const MessageHelper = require('./MessageHelper')
 
 async function handlerMessage(messageEvent) {
     const inputMessage = MessageHelper.getContent(messageEvent);

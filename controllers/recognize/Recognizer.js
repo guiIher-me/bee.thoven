@@ -1,5 +1,6 @@
-const Music = require('../music')
-const { MESSAGES, MessageHelper } = require('../message/MessageHelper')
+const Music = require('../music/Music')
+const MessageHelper = require('../message/MessageHelper')
+const MESSAGES = require('../message/messages.enum')
 const mainMenu = require('../menu/mainMenu')
 const recognizeMusic = require('./recognizeMusic')
 
@@ -16,7 +17,7 @@ class Recognizer {
             system.music = new Music(rec_music)
 
             //show music items
-            let messages = await system.music.getInfoMessages()
+            let messages = await system.music.getInfos()
             content.push(...messages)
 
             //show menu
@@ -38,7 +39,7 @@ class Recognizer {
             let text = MessageHelper.getTextFromUser(inputMessage)
             let messages = await mainMenu.executeOptionByText(text, system)
             content.push(...messages)
-        } catch(e) {
+        } catch(error) {
             content.push(MessageHelper.toText(MESSAGES.ERROR_UNEXPECTED))
         } finally {
             return content
