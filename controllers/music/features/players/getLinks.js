@@ -1,7 +1,6 @@
 let axios = require("axios");
 
-
-module.exports = async (url) => {
+async function getLinks(url) {
     try {
         let result = await axios({
             method: 'get',
@@ -13,3 +12,5 @@ module.exports = async (url) => {
         return err
     }
 }
+
+module.exports = getLinks
