@@ -1,6 +1,6 @@
 
 class MusicFeature {
-    constructor(music) {
+    constructor(music = null) {
       this.music = music
     }
   

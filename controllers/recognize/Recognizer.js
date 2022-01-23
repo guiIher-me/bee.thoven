@@ -1,9 +1,9 @@
-const Music = require('../music/Music')
 const MessageHelper = require('../message/MessageHelper')
 const MESSAGES = require('../message/messages.enum')
+const Logger = require('../logger/Logger')
 const mainMenu = require('../menu/mainMenu')
-const recognizeMusic = require('./recognizeMusic')
-const MusicFeatureFactory = require('../music/features/MusicFeatureFactory')
+const tryRecognizeAudioAsMusic = require('./tryRecognizeAudioAsMusic')
+const tryRecognizeAudioAsVoice = require('./tryRecognizeAudioAsVoice')
 
 let system = {}
 class Recognizer {
@@ -11,26 +11,23 @@ class Recognizer {
         let content = []
 
         try {
-            const rec_music = await recognizeMusic(MessageHelper.getFileFromUser(inputMessage))
-            if(!rec_music) throw new Error('Music not found!')
+            const musicContent = await tryRecognizeAudioAsMusic(inputMessage, system)
+            if(musicContent) {
+                content.push(...musicContent)
+                return content;
+            }
 
-            system.music = rec_music;
-
-            //show music items
-            const infos = MusicFeatureFactory.createFeature('infos', rec_music);
-            let messages = await infos.getMessages()
-            content.push(...messages)
-
-            //show menu
-            messages = await mainMenu.getMessages()
-            content.push(...messages)
-
+            const voiceContent = await tryRecognizeAudioAsVoice(inputMessage)
+            if(voiceContent) {
+                content.push(...voiceContent)
+                return content;
+            }
         } catch(error) {
-            console.log(error)
-            content.push(MessageHelper.toText(MESSAGES.ERROR_MUSIC_NOT_FOUND))
-        } finally {
-            return content
+            Logger.error('Recognizer.tryRecognizeAudio', error);
         }
+
+        content.push(MessageHelper.toText(MESSAGES.ERROR_MUSIC_NOT_FOUND))
+        return content
     }
 
     static async tryRecognizeText(inputMessage) {
@@ -41,6 +38,7 @@ class Recognizer {
             let messages = await mainMenu.executeOptionByText(text, system)
             content.push(...messages)
         } catch(error) {
+            Logger.error('Recognizer.tryRecognizeText', error)
             content.push(MessageHelper.toText(MESSAGES.ERROR_UNEXPECTED))
         } finally {
             return content
