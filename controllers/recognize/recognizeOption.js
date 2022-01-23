@@ -1,7 +1,7 @@
 
 const Fuse = require('fuse.js')
 
-module.exports = class RecognizeOption {
+class RecognizeOption {
 
     static recognize(item, list) {
         const options = { }
@@ -11,3 +11,5 @@ module.exports = class RecognizeOption {
     }
 
 }
+
+module.exports = RecognizeOption

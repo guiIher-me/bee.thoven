@@ -1,5 +1,5 @@
 const { WebhookController } = require('@zenvia/sdk')
-
+const Logger = require('../logger/Logger')
 function boot(channel, messageManager) {
     const zenviaWebhook = new WebhookController({
         channel,
@@ -7,7 +7,8 @@ function boot(channel, messageManager) {
     })
 
     zenviaWebhook.on('listening', () => {
-        console.info('Webhook is listening')
+        console.log('\n\n')
+        Logger.info('boot', 'Webhook is listening')
     })
 
     zenviaWebhook.init()
