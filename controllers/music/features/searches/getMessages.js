@@ -1,4 +1,3 @@
-
 const MessageHelper = require('../../../message/MessageHelper')
 const MESSAGES = require('../../../message/messages.enum')
 const speechToText = require('./speechToText')
@@ -14,9 +13,6 @@ async function getMessages(fileaudio) {
 
         const results = await searchTextOnWeb(text)
         const message = formatResults(text, results);
-
-        console.log("\n\n\n\n\nMessage:")
-        console.log(message)
         content.push(MessageHelper.toText(message))
     } catch(error) {
         Logger.error('Searcher.getMessages', error)

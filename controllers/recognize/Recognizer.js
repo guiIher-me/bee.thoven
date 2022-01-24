@@ -19,6 +19,7 @@ class Recognizer {
 
             const voiceContent = await tryRecognizeAudioAsVoice(inputMessage)
             if(voiceContent) {
+                system.music = null
                 content.push(...voiceContent)
                 return content;
             }

@@ -1,8 +1,8 @@
+const Logger = require('../logger/Logger');
 const axios = require("axios")
 const dotenv = require('dotenv')
 
-module.exports = async (url) => {
-
+async function recognizeMusic(url) {
   try {
     dotenv.config();
 
@@ -21,30 +21,29 @@ module.exports = async (url) => {
           'Content-Type': 'multipart/form-data'
         }
       })
-    
+
       return result.data
     }
 
     let resposta = await chamada(form)
 
     if (resposta && resposta.result) {
-      return {
+        return {
         artist: resposta.result.artist,
         title: resposta.result.title,
         album: resposta.result.album,
         lyrics: resposta.result.lyrics ? resposta.result.lyrics.lyrics : undefined,
-        spotify: {
+          spotify: {
           picture: resposta.result.deezer && resposta.result.deezer.artist ? resposta.result.deezer.artist.picture : undefined,
           preview: resposta.result.deezer.preview ? resposta.result.deezer.preview : undefined,
           link: resposta.result.deezer ? resposta.result.deezer.link : undefined,
         },
-
       }
     }
-
-  } catch (err) {
-    console.log(err)
-    return err
+  } catch (error) {
+    Logger.error(error)
+    return error
   }
-
 }
+
+module.exports = recognizeMusic
