@@ -53,17 +53,17 @@ As features desenvolvidas foram:
 11. Obtenha o token da api Custom Search JSON API neste <a href="https://developers.google.com/custom-search/v1/overview">link</a> 
 12. Crie na raiz deste projeto o arquivo .env com os seguintes dados:
   
-  ZENVIA_TOKEN = "token"
-  AUDD_TOKEN = "token"
-  VAGALUME_TOKEN = "token"
+  ZENVIA_TOKEN = "token" <br>
+  AUDD_TOKEN = "token" <br>
+  VAGALUME_TOKEN = "token" <br><br>
 
-  //Speech to Text
-  STT_API_KEY = "token"
-  STT_URL = "url"
+  //Speech to Text <br>
+  STT_API_KEY = "token" <br>
+  STT_URL = "url" <br><br>
 
-  //Google Custom Search
-  GCSKey = "token"
-  GCSEngine = "token"
+  //Google Custom Search <br>
+  GCSKey = "token" <br>
+  GCSEngine = "token" <br>
 
 13. Por ultimo, no terminal deste repositório digite o comando node src/index.js 
 Deverá receber a mensagem "Webhook is listening"
