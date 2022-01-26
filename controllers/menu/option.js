@@ -1,3 +1,4 @@
+const Logger = require('../logger/Logger')
 
 module.exports = class Option {
     
@@ -14,10 +15,10 @@ module.exports = class Option {
     async execute(params) {
         try {
             return await this.action(params)
-        } catch(e) {
-            console.log(`Error executing option "${this.text}"`)
-            throw new Error(`Error executing option "${this.text}"`)
+        } catch(error) {
+            logerror = new Error(`Error executing option "${this.text}"`)
+            Logger.error('Option', logerror)
+            throw logerror
         }
     }
-
 }
