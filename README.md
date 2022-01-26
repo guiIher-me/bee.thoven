@@ -6,6 +6,9 @@
 	🐝 Bee.Thoven 🎶
 </h4>
 
+<h4 align="center"> 
+	🚧 Em construção...  🚧
+</h4>
 
 ## 💻 Sobre o projeto
 
@@ -30,13 +33,20 @@ As features desenvolvidas foram:
 - Menu de opções
 - Find music by lyrics
 
-## API's utilizadas
+## ✅ API's utilizadas
 
 - AudD
 - Vagalume
 - Song Link
 - IBM speech-to-text 
 - Google Custom Search JSON API
+
+## ⚠️ Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
 
 ## 🚀 Como executar o projeto
 
@@ -69,3 +79,4 @@ As features desenvolvidas foram:
 Deverá receber a mensagem "Webhook is listening"
 
 Pronto! O projeto está rodando ;)
+
