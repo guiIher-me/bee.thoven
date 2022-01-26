@@ -57,11 +57,11 @@ As features desenvolvidas foram:
   AUDD_TOKEN = "token"
   VAGALUME_TOKEN = "token"
 
-  # Speech to Text
+  //Speech to Text
   STT_API_KEY = "token"
   STT_URL = "url"
 
-  # Google Custom Search
+  //Google Custom Search
   GCSKey = "token"
   GCSEngine = "token"
 
