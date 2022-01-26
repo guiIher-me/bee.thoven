@@ -50,7 +50,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 ## 🚀 Como executar o projeto
 
-1. Clone este repositório e instale as dependências com o comando npm install
+1. Clone este repositório e instale as dependências com o comando <code> npm install </code>
 2. Crie uma conta na plataforma <a href="https://ngrok.com/">Ngrok</a> 
 3. Faça o download da ferramenta Ngrok - <a href="https://ngrok.com/download">download</a>- e execute
 4. Configure o token de autenticação gerado na plataforma Ngrok com esse comando: ngrok authtoken "token"
