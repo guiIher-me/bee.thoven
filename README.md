@@ -40,7 +40,7 @@ As features desenvolvidas foram:
 
 ## 🚀 Como executar o projeto
 
-1. Clone este repositório
+1. Clone este repositório e instale as dependências com o comando npm install
 2. Crie uma conta na plataforma <a href="https://ngrok.com/">Ngrok</a> 
 3. Faça o download da ferramenta Ngrok - <a href="https://ngrok.com/download">download</a>- e execute
 4. Configure o token de autenticação gerado na plataforma Ngrok com esse comando: ngrok authtoken "token"
@@ -65,7 +65,7 @@ As features desenvolvidas foram:
   GCSKey = "token" <br>
   GCSEngine = "token" <br>
 
-13. Por ultimo, no terminal deste repositório digite o comando node src/index.js 
+13. Por ultimo, no terminal deste repositório digite o comando "node ." 
 Deverá receber a mensagem "Webhook is listening"
 
 Pronto! O projeto está rodando ;)
