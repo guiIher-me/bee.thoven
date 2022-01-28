@@ -29,10 +29,13 @@ async function speechToText(fileaudio) {
 
     try {
         const response = await speechToText.recognize(recognizeParams)
+        if(!response || !response.result.results[0])
+            throw new Error('Não foi possível reconhecer este áudio como texto')
+
         return response.result.results[0].alternatives[0].transcript
     } catch(error) {
         Logger.error('speechToText', error)
-        throw new error('Erro ao tentar converter audio para texto');
+        throw new error('Erro ao tentar converter audio para texto')
     }
 }
 
