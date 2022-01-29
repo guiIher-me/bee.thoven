@@ -8,7 +8,7 @@ class Searcher extends MusicFeature {
     }
 
     async getMessages() {
-        return await getMessages(this.fileaudio)
+        return getMessages(this.fileaudio)
     }
 }
 

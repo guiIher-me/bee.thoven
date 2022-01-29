@@ -8,21 +8,24 @@ const Logger = require('../../logger/Logger')
 
 class MusicFeatureFactory {
     static createFeature(featurename, params) {
-        if(featurename === 'infos')
+        if (featurename === 'infos')
             return new Infos(params)
-        else if(featurename === 'lyrics')
+
+        if (featurename === 'lyrics')
             return new Lyrics(params)
-        else if(featurename === 'players')
+
+        if (featurename === 'players')
             return new Players(params)
-        else if(featurename === 'tradutions')
+
+        if (featurename === 'tradutions')
             return new Translator(params)
-        else if(featurename === 'searches')
+
+        if (featurename === 'searches')
             return new Searcher(params)
-        else {
-            const error = new Error(`undefined feature ${featurename}`)
-            Logger.error('MusicFeatureFactory', error)
-            return new NullMusicFeature()
-        }
+
+        const error = new Error(`undefined feature ${featurename}`)
+        Logger.error('MusicFeatureFactory', error)
+        return new NullMusicFeature()
     }
 }
 

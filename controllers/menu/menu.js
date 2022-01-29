@@ -17,43 +17,42 @@ class Menu {
     }
 
     getFormatedOptionsArray() {
-        return this.options.map((option, index) => {
-            return `*${index+1}.* ${option.text}`
-        })
+        return this.options.map((option, index) => `*${index + 1}.* ${option.text}`)
     }
 
     toString() {
-        let menu = `${this.title}\n\n`
-        this.getFormatedOptionsArray().forEach(element => menu += `${element}\n`)
-        return menu
+        // this.getFormatedOptionsArray().forEach((element) => (menu += `${element}\n`))
+        const menu = this.getFormatedOptionsArray().join('\n')
+        return `${this.title}\n\n${menu}`
     }
 
     async getMessages() {
-        let messages = this.toString()
+        const messages = this.toString()
         return [MessageHelper.toText(messages)]
     }
 
     async executeOptionByText(text, system) {
-        if(!system.music) return [MessageHelper.toText(MESSAGES.WELCOME)]
+        if (!system.music)
+            return [MessageHelper.toText(MESSAGES.WELCOME)]
 
-        const rec_option = RecognizeOption.recognize(text, this.getFormatedOptionsArray())
-        if(!rec_option.length) return [MessageHelper.toText(MESSAGES.MENU_INVALID_OPTION)]
+        const recOption = RecognizeOption.recognize(text, this.getFormatedOptionsArray())
+        if (!recOption.length)
+            return [MessageHelper.toText(MESSAGES.MENU_INVALID_OPTION)]
 
-        const index = rec_option[0].refIndex
+        const index = recOption[0].refIndex
         const option = this.options[index]
 
-        let content = []
+        const content = []
         let messages = await option.execute(system)
         content.push(...messages)
 
-        if(option.reshowMenu()) {
+        if (option.reshowMenu()) {
             messages = await this.getMessages()
             content.push(...messages)
         }
 
         return content
     }
-
 }
 
-module.exports = Menu;
+module.exports = Menu

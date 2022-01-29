@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 const Option = require('./Option')
 
 class ExitOption extends Option {

@@ -1,4 +1,4 @@
-let axios = require("axios");
+const axios = require('axios')
 
 async function getLinks(url) {
     const result = await axios({

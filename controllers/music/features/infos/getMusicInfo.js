@@ -8,11 +8,11 @@ function getMusicInfo(music) {
 
     if (music.title)
         text = `${text}Título: *${music.title}*\n`
-    
+
     if (music.album)
         text = `${text}Álbum: *${music.album}*\n`
 
-    return text != '' ? MESSAGES.MUSIC_FOUND + text : false
+    return text !== '' ? MESSAGES.MUSIC_FOUND + text : false
 }
 
-module.exports = getMusicInfo;
+module.exports = getMusicInfo

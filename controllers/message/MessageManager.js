@@ -12,4 +12,4 @@ class MessageManager {
     }
 }
 
-module.exports = MessageManager;
+module.exports = MessageManager

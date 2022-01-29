@@ -11,31 +11,31 @@ async function speechToText(fileaudio) {
     const apikey = process.env.STT_API_KEY
     const serviceUrl = process.env.STT_URL
 
-    const speechToText = new SpeechToTextV1({
+    const STT = new SpeechToTextV1({
         authenticator: new IamAuthenticator({
-            apikey: apikey,
+            apikey,
         }),
-        serviceUrl: serviceUrl,
-    });
+        serviceUrl,
+    })
 
     const stream = await axios.get(fileaudio.fileUrl, {
-        responseType: 'stream',       
-    });
+        responseType: 'stream',
+    })
 
     const recognizeParams = {
         audio: stream.data,
         contentType: fileaudio.fileMimeType,
-    };
+    }
 
     try {
-        const response = await speechToText.recognize(recognizeParams)
-        if(!response || !response.result.results[0])
+        const response = await STT.recognize(recognizeParams)
+        if (!response || !response.result.results[0])
             throw new Error('Não foi possível reconhecer este áudio como texto')
 
         return response.result.results[0].alternatives[0].transcript
-    } catch(error) {
+    } catch (error) {
         Logger.error('speechToText', error)
-        throw new error('Erro ao tentar converter audio para texto')
+        throw new Error('Erro ao tentar converter audio para texto')
     }
 }
 

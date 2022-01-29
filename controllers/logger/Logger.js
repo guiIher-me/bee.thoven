@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 
 class Logger {
     static isEnable() {
@@ -17,11 +18,11 @@ class Logger {
     }
 
     static info(functioname, message, obj = null) {
-        Logger._log('INFO', functioname, message)
+        Logger._log('INFO', functioname, message, obj)
     }
 
     static warn(functioname, message, obj = null) {
-        Logger._log('WARN', functioname, message)
+        Logger._log('WARN', functioname, message, obj)
     }
 }
 
