@@ -61,7 +61,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 9. Faça o cadastro para obter o token da api Vagalume - <a href="https://api.vagalume.com.br/">link</a>
 10. Obtenha o token da speech-to-text nesse <a href="https://cloud.ibm.com/catalog/services/speech-to-text">link</a>
 11. Obtenha o token da api Custom Search JSON API neste <a href="https://developers.google.com/custom-search/v1/overview">link</a> 
-12. Crie na raiz deste projeto o arquivo .env com os seguintes dados:
+12. Crie na raiz deste projeto o arquivo .env com os seguintes dados. Opcionalmente, você também pode modificar o arquivo env.example, alterar os tokens fictícios e renomeá-lo para .env:
   
 ```
   ZENVIA_TOKEN = "token"
