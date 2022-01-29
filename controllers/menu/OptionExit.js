@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 const Option = require('./Option')
 
-class ExitOption extends Option {
+class OptionExit extends Option {
     constructor(text = '', action = null) {
         super(text, action)
     }
@@ -11,4 +11,4 @@ class ExitOption extends Option {
     }
 }
 
-module.exports = ExitOption
+module.exports = OptionExit

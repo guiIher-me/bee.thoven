@@ -3,7 +3,7 @@ const MessageHelper = require('../message/MessageHelper')
 const MESSAGES = require('../message/messages.enum')
 const MusicFeatureFactory = require('../music/features/MusicFeatureFactory')
 const Option = require('./Option')
-const ExitOption = require('./ExitOption')
+const OptionExit = require('./OptionExit')
 
 const mainMenu = new Menu('Escolha uma das opções para ver mais detalhes:')
 
@@ -25,7 +25,7 @@ mainMenu.addOption(new Option('Tradução', async (params) => {
     return feature.getMessages()
 }))
 
-mainMenu.addOption(new ExitOption('Não, obrigado', async (params) => {
+mainMenu.addOption(new OptionExit('Não, obrigado', async (params) => {
     // eslint-disable-next-line no-param-reassign
     params.music = null // reset music obj
     return [MessageHelper.toText(MESSAGES.GOOD_BYE)]
