@@ -6,10 +6,11 @@ class Logger {
     }
 
     static _log(logtype, functioname, message, obj = null) {
-        if(Logger.isEnable()) {
+        if (Logger.isEnable()) {
             const logmessage = `${functioname} - ${message}`
             console.log(`[${logtype}] ${logmessage}`)
-            if(obj) console.log(obj)
+            if (obj)
+                console.log(obj)
         }
     }
 
