@@ -1,15 +1,14 @@
 const Logger = require('../logger/Logger')
 
-module.exports = class Option {
+class Option {
     
-    constructor(text = '', show_menu, action = null) {
+    constructor(text = '', action = null) {
         this.text = text
         this.action = action
-        this.show_menu = show_menu
     }
 
     reshowMenu() {
-        return this.show_menu
+        return true
     }
 
     async execute(params) {
@@ -22,3 +21,5 @@ module.exports = class Option {
         }
     }
 }
+
+module.exports = Option

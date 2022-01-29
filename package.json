@@ -1,13 +1,13 @@
 {
   "name": "bee.thoven",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto criado a partir de um desafio proposto pela chapter leader Stiphanie Silva, com o objetivo de executar o chatbot de música para whatsapp da plataforma Zenvia disponível e aplicar novas features.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Guilherme Oliveira <guilherme.oliveira@direct.one>, Juliana Araújo <juliana.araujo@direct.one>",
   "license": "ISC",
   "dependencies": {
     "@zenvia/sdk": "^2.2.0",
