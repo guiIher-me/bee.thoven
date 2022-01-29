@@ -12,16 +12,16 @@
 
 ## 💻 Sobre o projeto
 
-Projeto criado a partir de um desafio proposto pela chapter leader Stiphanie Silva, com o objetivo de executar o chatbot de música da plataforma Zenvia disponível neste <a href="https://www.zenvia.com/blog/developers/whatsapp-bot-nodejs/">tutorial</a> e aplicar novas features. 
+Projeto criado a partir de um desafio proposto pela chapter leader Stiphanie Silva, com o objetivo de executar o chatbot de música para whatsapp da plataforma Zenvia disponível neste <a href="https://www.zenvia.com/blog/developers/whatsapp-bot-nodejs/">tutorial</a> e aplicar novas features. 
 
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas:
 
-- Node.js
 - JavaScript
+- Node.js
 - Ngrok
-- Zenvia
+- Zenvia SDK
 
 ## 🆕 Features
 
@@ -31,7 +31,7 @@ As features desenvolvidas foram:
 - Letra
 - Tradução
 - Menu de opções
-- Find music by lyrics
+- [beta] Encontrar a música a partir de um trecho gravado pela voz do usuário.
 
 ## ✅ API's utilizadas
 
@@ -63,17 +63,19 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 11. Obtenha o token da api Custom Search JSON API neste <a href="https://developers.google.com/custom-search/v1/overview">link</a> 
 12. Crie na raiz deste projeto o arquivo .env com os seguintes dados:
   
-  ZENVIA_TOKEN = "token" <br>
-  AUDD_TOKEN = "token" <br>
-  VAGALUME_TOKEN = "token" <br><br>
+```
+  ZENVIA_TOKEN = "token"
+  AUDD_TOKEN = "token"
+  VAGALUME_TOKEN = "token"
 
-  //Speech to Text <br>
-  STT_API_KEY = "token" <br>
-  STT_URL = "url" <br><br>
+  # Speech to Text
+  STT_API_KEY = "token"
+  STT_URL = "url"
 
-  //Google Custom Search <br>
-  GCSKey = "token" <br>
-  GCSEngine = "token" <br>
+  # Google Custom Search
+  GCSKey = "token"
+  GCSEngine = "token"
+```
 
 13. Por ultimo, no terminal deste repositório digite o comando "node ." 
 Deverá receber a mensagem "Webhook is listening"
