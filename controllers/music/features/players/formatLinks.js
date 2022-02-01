@@ -1,13 +1,13 @@
-
 function formatLinks(links) {
-    if(!links) return false
+    if (!links)
+        return false
 
     let text = ''
-    links.forEach(musicLink => {
+    links.forEach((musicLink) => {
         text += `*${musicLink.name}*:\n${musicLink.url}\n\n`
-    });
-    
-    return text != '' ? text : false
+    })
+
+    return text !== '' ? text : false
 }
 
 module.exports = formatLinks

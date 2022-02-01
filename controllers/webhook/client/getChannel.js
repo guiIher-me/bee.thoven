@@ -1,9 +1,9 @@
-const getClient = require('./getClient');
+const getClient = require('./getClient')
 
-function getChannel(channel_str) {
-    const client = getClient();
-    const channel = client.getChannel(channel_str)
+function getChannel(channelStr) {
+    const client = getClient()
+    const channel = client.getChannel(channelStr)
     return channel
 }
 
-module.exports = getChannel;
+module.exports = getChannel

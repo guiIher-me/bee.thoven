@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 
 class Logger {
     static isEnable() {
@@ -5,10 +6,11 @@ class Logger {
     }
 
     static _log(logtype, functioname, message, obj = null) {
-        if(Logger.isEnable()) {
+        if (Logger.isEnable()) {
             const logmessage = `${functioname} - ${message}`
             console.log(`[${logtype}] ${logmessage}`)
-            if(obj) console.log(obj)
+            if (obj)
+                console.log(obj)
         }
     }
 
@@ -17,11 +19,11 @@ class Logger {
     }
 
     static info(functioname, message, obj = null) {
-        Logger._log('INFO', functioname, message)
+        Logger._log('INFO', functioname, message, obj)
     }
 
     static warn(functioname, message, obj = null) {
-        Logger._log('WARN', functioname, message)
+        Logger._log('WARN', functioname, message, obj)
     }
 }
 

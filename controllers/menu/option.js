@@ -1,24 +1,25 @@
+/* eslint-disable class-methods-use-this */
 const Logger = require('../logger/Logger')
 
-module.exports = class Option {
-    
-    constructor(text = '', show_menu, action = null) {
+class Option {
+    constructor(text = '', action = null) {
         this.text = text
         this.action = action
-        this.show_menu = show_menu
     }
 
     reshowMenu() {
-        return this.show_menu
+        return true
     }
 
     async execute(params) {
         try {
             return await this.action(params)
-        } catch(error) {
-            logerror = new Error(`Error executing option "${this.text}"`)
+        } catch (error) {
+            const logerror = new Error(`Error executing option "${this.text}"`)
             Logger.error('Option', logerror)
             throw logerror
         }
     }
 }
+
+module.exports = Option

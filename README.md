@@ -2,7 +2,7 @@
     <img alt="Bee.thoven" title="Bee.thoven" src="./assets/banner.png" />
 </h1>
 
-<h4 align="center"> 
+<h4 align="center">
 	🐝 Bee.Thoven 🎶
 </h4>
 
@@ -13,6 +13,7 @@
 ## 💻 Sobre o projeto
 
 Projeto criado a partir de um desafio proposto pela chapter leader Stiphanie Silva, com o objetivo de executar o chatbot de música para whatsapp da plataforma Zenvia disponível neste <a href="https://www.zenvia.com/blog/developers/whatsapp-bot-nodejs/">tutorial</a> e aplicar novas features. 
+<br/><br/>
 
 ## 🛠 Tecnologias
 
@@ -22,6 +23,7 @@ As seguintes ferramentas foram usadas:
 - Node.js
 - Ngrok
 - Zenvia SDK
+<br/><br/>
 
 ## 🆕 Features
 
@@ -32,6 +34,7 @@ As features desenvolvidas foram:
 - Tradução
 - Menu de opções
 - [beta] Encontrar a música a partir de um trecho gravado pela voz do usuário.
+<br/><br/>
 
 ## ✅ API's utilizadas
 
@@ -40,13 +43,37 @@ As features desenvolvidas foram:
 - Song Link
 - IBM speech-to-text 
 - Google Custom Search JSON API
+<br/><br/>
 
 ## ⚠️ Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).<br/>
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+<br/><br/>
 
+## 📁 Estrutura de Pastas
+
+```
+.
+├── assets                  # assets files
+├── controllers             # code files
+│   ├── logger              # logger controller
+│   ├── menu                # menu controller
+│   ├── message             # messages controller
+│   ├── music               # music controller
+│   │   └── features        # the implemented features
+│   │       ├── infos       # music info feature
+│   │       ├── lyrics      # lyrics feature
+│   │       ├── players     # music players feature
+│   │       ├── searches    # search for spoken music lyric
+│   │       └── tradutions  # lyrics tradutions feature
+│   ├── recognize           # voice, music and text option recognizers
+│   └── webhook             # webhooker wrapper
+│       └── client          # Zenvia client Webhook
+└── ...
+```
+<br/><br/>
 
 ## 🚀 Como executar o projeto
 
@@ -61,7 +88,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 9. Faça o cadastro para obter o token da api Vagalume - <a href="https://api.vagalume.com.br/">link</a>
 10. Obtenha o token da speech-to-text nesse <a href="https://cloud.ibm.com/catalog/services/speech-to-text">link</a>
 11. Obtenha o token da api Custom Search JSON API neste <a href="https://developers.google.com/custom-search/v1/overview">link</a> 
-12. Crie na raiz deste projeto o arquivo .env com os seguintes dados:
+12. Crie na raiz deste projeto o arquivo .env com os seguintes dados. Opcionalmente, você também pode modificar o arquivo env.example, alterar os tokens fictícios e renomeá-lo para .env:
   
 ```
   ZENVIA_TOKEN = "token"
