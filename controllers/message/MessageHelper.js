@@ -1,7 +1,7 @@
 const {
     FileContent,
     TextContent,
-} = require('@zenvia/sdk');
+} = require('@zenvia/sdk')
 
 class MessageHelper {
     static getContent(messageEvent) {

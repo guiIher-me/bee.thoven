@@ -1,17 +1,16 @@
-
 function getSpecificLinks(params) {
-    let players = [
-        {name: 'Deezer', prop: 'deezer'},
-        {name: 'Apple Music', prop: 'appleMusic'},
-        {name: 'Spotify', prop: 'spotify'}
+    const players = [
+        { name: 'Deezer', prop: 'deezer' },
+        { name: 'Apple Music', prop: 'appleMusic' },
+        { name: 'Spotify', prop: 'spotify' },
     ]
 
-    let arrayLinks = []
+    const arrayLinks = []
     players.forEach((player) => {
-        if(params[player.prop])
+        if (params[player.prop])
             arrayLinks.push({
-                name: player.name, 
-                url: params[player.prop].url
+                name: player.name,
+                url: params[player.prop].url,
             })
     })
 
