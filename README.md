@@ -6,10 +6,6 @@
 	🐝 Bee.Thoven 🎶
 </h4>
 
-<h4 align="center"> 
-	🚧 Em construção...  🚧
-</h4>
-
 ## 💻 Sobre o projeto
 
 Projeto criado a partir de um desafio proposto pela chapter leader Stiphanie Silva, com o objetivo de executar o chatbot de música da plataforma Zenvia disponível neste <a href="https://www.zenvia.com/blog/developers/whatsapp-bot-nodejs/">tutorial</a> e aplicar novas features. 
@@ -40,6 +36,14 @@ As features desenvolvidas foram:
 - Song Link
 - IBM speech-to-text 
 - Google Custom Search JSON API
+
+## 🎉 Exemplo de funcionamento
+
+- No início da conversa é possível mandar uma mensagem ou diretamente o áudio a ser pesquisado:
+
+<img src="./assets/video1.gif" alt="video um"  width="150" />
+
+
 
 ## ⚠️ Pré-requisitos
 
