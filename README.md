@@ -6,10 +6,6 @@
 	🐝 Bee.Thoven 🎶
 </h4>
 
-<h4 align="center"> 
-	🚧 Em construção...  🚧
-</h4>
-
 ## 💻 Sobre o projeto
 
 Projeto criado a partir de um desafio proposto pela chapter leader Stiphanie Silva, com o objetivo de executar o chatbot de música para whatsapp da plataforma Zenvia disponível neste <a href="https://www.zenvia.com/blog/developers/whatsapp-bot-nodejs/">tutorial</a> e aplicar novas features. 
@@ -44,6 +40,43 @@ As features desenvolvidas foram:
 - IBM speech-to-text 
 - Google Custom Search JSON API
 <br/><br/>
+
+## 🎉 Exemplo de funcionamento
+
+- No início da conversa é possível mandar uma mensagem ou diretamente o áudio a ser pesquisado, se a música foi encontrada, será retornado o nome do artísta, da música e do álbum, a foto do álbum, e 30 segundos de áudio da música. Essas funções fazem parte da feature original do bot de música Zenvia.  
+<h1 align="center">
+<img src="./assets/video1.gif" alt="video um"  width="150" align="center" />
+</h1>
+
+- Após é apresentado um menu de opções onde é possível selecionar as features que foram implementadas nesse projeto. 
+A opção 1 retorna uma lista com os links que levam diretamente ao player selecionado, usamos a api Song Link. 
+
+<h1 align="center">
+<img src="./assets/video2.gif" alt="video um"  width="150" align="center" />
+</h1>
+
+- A opção 2 retorna a letra da música com a api AudD, caso não encontre é informado que não foi possível encontrar e então apresenta o menu principal novamente.
+
+<h1 align="center">
+<img src="./assets/video3.gif" alt="video um"  width="150" align="center" />
+</h1>
+
+- A opção 3 retorna a tradução da música usando a api Vagalume, caso não encontre também informa que não foi possível encontrar e então apresenta o menu principal novamente.
+
+<h1 align="center">
+<img src="./assets/video4.gif" alt="video um"  width="150" align="center" />
+</h1>
+
+- A opção 4 encerra o atendimento e é possível enviar outro áudio.
+<h1 align="center">
+<img src="./assets/video5.gif" alt="video um"  width="150" align="center" />
+</h1>
+
+- Caso deseje pesquisar o nome de uma música por trecho, é possível enviar um áudio falando este trecho. Será retornada uma lista com prováveis nomes da música. Esta feature usa a api IBM speech-to-text para transformar a fala em texto e usa a api Google Custom Search JSON API para pesquisar esse texto e retornar as informações encontradas.
+
+<h1 align="center">
+<img src="./assets/video6.gif" alt="video um"  width="150" align="center" />
+</h1>
 
 ## ⚠️ Pré-requisitos
 
