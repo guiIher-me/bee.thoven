@@ -47,16 +47,21 @@ As features desenvolvidas foram:
 <h1 align="center">
 <img src="./assets/video1.gif" alt="video um"  width="150" align="center" />
 </h1>
-- Após é apresentado um menu de opções onde é possível selecionar as features que foram implementadas nesse projeto. A opção 1 retorna uma lista com os links que levam diretamente ao player selecionado.
+
+- Após é apresentado um menu de opções onde é possível selecionar as features que foram implementadas nesse projeto. 
+A opção 1 retorna uma lista com os links que levam diretamente ao player selecionado, usamos a api Song Link. 
 
 <h1 align="center">
 <img src="./assets/video2.gif" alt="video um"  width="150" align="center" />
 </h1>
-- A opção 2 retorna a letra da música, caso não encontre é informado que não foi possível encontrar e então apresenta o menu principal novamente.
+
+- A opção 2 retorna a letra da música com a api AudD, caso não encontre é informado que não foi possível encontrar e então apresenta o menu principal novamente.
+
 <h1 align="center">
 <img src="./assets/video3.gif" alt="video um"  width="150" align="center" />
 </h1>
-- A opção 3 retorna a tradução da música, caso não encontre também informa que não foi possível encontrar e então apresenta o menu principal novamente.
+
+- A opção 3 retorna a tradução da música usando a api Vagalume, caso não encontre também informa que não foi possível encontrar e então apresenta o menu principal novamente.
 
 <h1 align="center">
 <img src="./assets/video4.gif" alt="video um"  width="150" align="center" />
@@ -67,7 +72,8 @@ As features desenvolvidas foram:
 <img src="./assets/video5.gif" alt="video um"  width="150" align="center" />
 </h1>
 
-- .
+- Caso deseje pesquisar o nome de uma música por trecho, é possível enviar um áudio falando este trecho. Será retornada uma lista com prováveis nomes da música. Esta feature usa a api IBM speech-to-text para transformar a fala em texto e usa a api Google Custom Search JSON API para pesquisar esse texto e retornar as informações encontradas.
+
 <h1 align="center">
 <img src="./assets/video6.gif" alt="video um"  width="150" align="center" />
 </h1>
